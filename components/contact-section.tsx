@@ -58,7 +58,7 @@ export function ContactSection() {
             문의하기
           </h2>
           <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm">
-            연구 협력, 서비스 문의, 상담 등 다양한 문의를 환영합니다.
+            연구 의뢰, 서비스 문의, 상담 등 다양한 문의를 환영합니다.
           </p>
         </div>
 
@@ -66,18 +66,18 @@ export function ContactSection() {
           {/* Contact Info - Left Side */}
           <div className="lg:col-span-2 flex flex-col gap-5">
             {/* 연락처 정보 카드 */}
-            <div className="bg-secondary rounded-2xl p-6 text-white">
-              <h3 className="font-bold text-base text-white/90 mb-4">연락처 정보</h3>
-              <div className="space-y-3.5">
+            <div className="rounded-2xl p-6 text-foreground">
+              <h3 className="font-bold text-base text-foreground mb-4">연락처 정보</h3>
+              <div className="space-y-3">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <info.icon className="w-4 h-4 text-white/80" />
+                    <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <info.icon className="w-4 h-4 text-foreground/60" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-white/50 mb-0.5">{info.label}</p>
-                      <p className="font-medium text-white text-sm">{info.value}</p>
-                      <p className="text-xs text-white/60">{info.subValue}</p>
+                      <p className="text-xs text-muted-foreground mb-0.5">{info.label}</p>
+                      <p className="font-medium text-foreground text-sm">{info.value}</p>
+                      <p className="text-xs text-muted-foreground">{info.subValue}</p>
                     </div>
                   </div>
                 ))}

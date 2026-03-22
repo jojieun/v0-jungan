@@ -31,57 +31,35 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="bg-background relative overflow-hidden">
+    <section id="about" className="bg-background relative overflow-hidden py-20">
       {/* Background Decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
       
-      {/* Section Header with Wide Background Image - Fixed */}
-      <div className="relative">
-        <div className="relative w-full h-72 md:h-80 overflow-hidden">
-          {/* Background Image - Fixed */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-fixed"
-            style={{
-              backgroundImage: `url('/images/about-bg.jpg')`,
-            }}
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/80 to-primary/75" />
-          
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-10 -right-10 w-64 h-64 border border-white/10 rounded-full" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 border border-white/10 rounded-full" />
-            <div className="absolute top-1/2 left-1/4 w-40 h-40 border border-white/5 rounded-full" />
-          </div>
-          
-          {/* Content */}
-          <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-            <span className="inline-block text-white/80 font-medium text-sm uppercase tracking-[0.2em] mb-4 bg-white/10 px-4 py-1.5 rounded-full border border-white/20">About Us</span>
-            <h2 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
-              연구원 소개
-            </h2>
-            <p className="text-white/70 mt-4 max-w-xl mx-auto text-lg">
-              신뢰와 전문성을 바탕으로 최적의 솔루션을 제공합니다
-            </p>
-          </div>
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-16">
+        <div className="text-center mb-12">
+          <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider bg-primary/10 px-4 py-1.5 rounded-full mb-4">About Us</span>
+          <h2 className="font-[var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
+            연구원 소개
+          </h2>
+          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-sm">
+            신뢰와 전문성을 바탕으로 최적의 솔루션을 제공합니다
+          </p>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative py-20">
-        {/* Introduction Card */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="bg-white rounded-2xl pt-8 px-8 pb-5 lg:pt-10 lg:px-10 lg:pb-6 border border-border shadow-lg">
+        {/* Introduction Card - Wide Style */}
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-xl px-8 py-6 lg:px-10 lg:py-7 border border-border/40 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start gap-4">
               <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-primary to-secondary rounded-full flex-shrink-0" />
               <div>
-                <p className="text-lg lg:text-xl text-foreground leading-relaxed mb-4">
+                <p className="text-lg lg:text-lg text-foreground leading-relaxed mb-4">
                   <strong className="text-primary font-bold">사단법인 정안경제연구원</strong>은 
                   학술연구, 계약금액조정, 원가계산, 건설클레임 등 전문 분야에서 
                   체계적인 연구와 컨설팅 서비스를 제공하는 <span className="text-secondary font-semibold">신뢰할 수 있는 연구기관</span>입니다.
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   전문성과 신뢰를 바탕으로 고객에게 최적의 솔루션을 제공하며, 
                   건설 및 경제 분야의 발전에 기여하고자 합니다.
                 </p>
@@ -89,8 +67,10 @@ export function AboutSection() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Core Values */}
+      {/* Core Values */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (
             <div

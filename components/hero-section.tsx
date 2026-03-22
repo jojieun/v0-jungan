@@ -43,16 +43,9 @@ export function HeroSection() {
             {/* Main Title */}
             <h1 className="leading-tight mb-8 text-balance">
               <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block">전문성으로</span>
-              <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block mb-3">가치를 창출하는</span>
-              {/* 정안경제연구원 - 버건디 언더라인 강조 방식 */}
-              <span className="relative inline-block">
-                <span className="font-[var(--font-heading)] text-5xl sm:text-6xl lg:text-7xl text-white">
-                  정안경제연구원
-                </span>
-                {/* 하단 버건디 강조 바 */}
-                <span className="absolute -bottom-2 left-0 right-0 h-1.5 bg-primary rounded-full" />
-                {/* 좌측 버건디 강조 바 */}
-                <span className="absolute -left-4 top-1/2 -translate-y-1/2 w-1 h-full bg-primary rounded-full" />
+              <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block">가치를 창출하는</span>
+              <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-secondary block mt-2">
+                정안경제연구원
               </span>
             </h1>
 
@@ -74,7 +67,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border border-white/60 bg-transparent text-white hover:bg-white/10 rounded-full px-8"
+                className="border-[0.5px] border-white/40 bg-transparent text-white hover:bg-white/10 rounded-full px-8"
               >
                 <FileText className="mr-2 w-4 h-4" />
                 연구실적 보기
@@ -111,30 +104,6 @@ export function HeroSection() {
                 <div className="text-white/70 text-sm">{stat.label}</div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom: 연구분야 키워드 배너 - 히어로와 자연스럽게 연결 */}
-      <div className="absolute bottom-0 left-0 right-0">
-        {/* 부드러운 흰색 배경으로 전환 */}
-        <div className="bg-gradient-to-t from-white via-white/80 to-transparent h-16" />
-        <div className="bg-white border-t border-border/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center divide-x divide-border/50 overflow-x-auto">
-              {[
-                { label: "학술연구", sub: "Academic Research" },
-                { label: "계약금액조정", sub: "Contract Adjustment" },
-                { label: "건설클레임", sub: "Construction Claim" },
-                { label: "원가계산", sub: "Cost Calculation" },
-                { label: "개발부담금", sub: "Development Charge" },
-              ].map((item) => (
-                <div key={item.label} className="flex-1 min-w-[140px] text-center py-4 px-3 group cursor-default hover:bg-primary/5 transition-colors">
-                  <div className="text-foreground font-semibold text-sm group-hover:text-primary transition-colors">{item.label}</div>
-                  <div className="text-muted-foreground text-xs mt-0.5">{item.sub}</div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
