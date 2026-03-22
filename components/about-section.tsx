@@ -43,7 +43,7 @@ export function AboutSection() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-fixed"
             style={{
-              backgroundImage: `url('/images/section-bg.jpg')`,
+              backgroundImage: `url('/images/about-bg.jpg')`,
             }}
           />
           {/* Overlay */}
@@ -72,7 +72,7 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative py-20">
         {/* Introduction Card */}
         <div className="max-w-4xl mx-auto mb-16">
-          <div className="bg-white rounded-2xl p-8 lg:p-10 border border-border shadow-lg">
+          <div className="bg-white rounded-2xl pt-8 px-8 pb-5 lg:pt-10 lg:px-10 lg:pb-6 border border-border shadow-lg">
             <div className="flex items-start gap-4">
               <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-primary to-secondary rounded-full flex-shrink-0" />
               <div>

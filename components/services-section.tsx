@@ -89,7 +89,7 @@ export function ServicesSection() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-fixed"
             style={{
-              backgroundImage: `url('/images/section-bg.jpg')`,
+              backgroundImage: `url('/images/services-bg.jpg')`,
             }}
           />
           {/* Overlay - Different gradient direction for variety */}

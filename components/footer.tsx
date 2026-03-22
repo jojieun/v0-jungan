@@ -74,9 +74,9 @@ export function Footer() {
           {/* Footer Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-serif font-bold text-sm mb-5 text-white/90 relative inline-block">
+              <h4 className="font-sans font-medium text-sm mb-5 text-white/80 tracking-wide relative inline-block">
                 {category}
-                <div className="absolute -bottom-1 left-0 w-6 h-0.5 bg-gradient-to-r from-primary to-transparent rounded-full" />
+                <div className="absolute -bottom-1 left-0 w-5 h-px bg-primary/70 rounded-full" />
               </h4>
               <ul className="space-y-2.5">
                 {links.map((link) => (
