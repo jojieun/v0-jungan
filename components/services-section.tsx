@@ -82,32 +82,45 @@ export function ServicesSection() {
         }} />
       </div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header with Creative Design */}
-        <div className="relative mb-16">
-          {/* Creative Header Background */}
-          <div className="relative bg-gradient-to-br from-primary via-[#8a1f2f] to-secondary rounded-3xl p-10 md:p-14 overflow-hidden">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2" />
-            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/30 rounded-full blur-3xl translate-y-1/2" />
+      {/* Section Header with Wide Background Image */}
+      <div className="relative mb-16">
+        <div className="relative w-full h-72 md:h-80 overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-fixed"
+            style={{
+              backgroundImage: `url('/images/hero-research.jpg')`,
+            }}
+          />
+          {/* Overlay - Different gradient direction for variety */}
+          <div className="absolute inset-0 bg-gradient-to-l from-secondary/95 via-primary/85 to-[#9a1f30]/90" />
+          
+          {/* Decorative Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-10 left-10 w-32 h-32 border-2 border-white/10 rotate-45" />
+            <div className="absolute bottom-10 right-10 w-48 h-48 border-2 border-white/10 rotate-12" />
+            <div className="absolute top-1/2 right-1/3 w-24 h-24 border border-white/10 rounded-full" />
+            {/* Subtle line pattern */}
             <div className="absolute inset-0 opacity-5" style={{
-              backgroundImage: `linear-gradient(45deg, white 25%, transparent 25%), linear-gradient(-45deg, white 25%, transparent 25%), linear-gradient(45deg, transparent 75%, white 75%), linear-gradient(-45deg, transparent 75%, white 75%)`,
-              backgroundSize: '20px 20px'
+              backgroundImage: `repeating-linear-gradient(45deg, white 0, white 1px, transparent 1px, transparent 40px)`,
             }} />
-            
-            <div className="relative text-center">
-              <span className="inline-block text-primary-foreground/80 font-medium text-sm uppercase tracking-[0.2em] mb-4 bg-white/10 px-4 py-1.5 rounded-full">Our Services</span>
-              <h2 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
-                주요 업무 안내
-              </h2>
-              <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
-                정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
-                다양한 전문 서비스를 제공합니다.
-              </p>
-            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+            <span className="inline-block text-white/80 font-medium text-sm uppercase tracking-[0.2em] mb-4 bg-white/10 px-4 py-1.5 rounded-full border border-white/20">Our Services</span>
+            <h2 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
+              주요 업무 안내
+            </h2>
+            <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
+              정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
+              다양한 전문 서비스를 제공합니다.
+            </p>
           </div>
         </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, index) => (

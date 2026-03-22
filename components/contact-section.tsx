@@ -62,12 +62,7 @@ export function ContactSection() {
           <h2 className="font-[var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
             문의하기
           </h2>
-          <div className="flex items-center justify-center gap-2 mt-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-primary rounded-full" />
-            <div className="w-3 h-3 bg-primary rounded-full" />
-            <div className="w-12 h-1 bg-gradient-to-l from-transparent to-primary rounded-full" />
-          </div>
-          <p className="text-muted-foreground mt-8 max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground mt-6 max-w-2xl mx-auto text-lg">
             연구 협력, 서비스 문의, 상담 등 다양한 문의를 환영합니다.
           </p>
         </div>
@@ -80,7 +75,7 @@ export function ContactSection() {
             {contactInfo.map((info, index) => (
               <div 
                 key={index} 
-                className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 border border-border/50 hover:bg-muted/80 transition-colors"
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors"
               >
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                   <info.icon className="w-5 h-5 text-primary" />
@@ -110,7 +105,7 @@ export function ContactSection() {
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-3">
-            <div className="bg-gradient-to-br from-muted to-muted/50 rounded-3xl p-8 lg:p-10 border border-border/50 shadow-xl relative overflow-hidden">
+            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-border shadow-lg relative overflow-hidden">
               {/* Form Decoration */}
               <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
               
@@ -130,7 +125,7 @@ export function ContactSection() {
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="홍길동"
                       required
-                      className="bg-background border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                   <div className="space-y-2">
@@ -143,7 +138,7 @@ export function ContactSection() {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="010-0000-0000"
                       required
-                      className="bg-background border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                 </div>
@@ -156,7 +151,7 @@ export function ContactSection() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="example@email.com"
-                      className="bg-background border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                   <div className="space-y-2">
@@ -165,7 +160,7 @@ export function ContactSection() {
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                       placeholder="회사/기관명"
-                      className="bg-background border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                 </div>
@@ -178,7 +173,7 @@ export function ContactSection() {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     required
-                    className="w-full h-12 px-4 rounded-xl border border-border/50 bg-background text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    className="w-full h-12 px-4 rounded-xl border border-border/50 bg-muted/30 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary"
                   >
                     <option value="">선택해주세요</option>
                     <option value="research">학술연구</option>
@@ -204,7 +199,7 @@ export function ContactSection() {
                     placeholder="문의하실 내용을 입력해 주세요."
                     rows={5}
                     required
-                    className="bg-background border-border/50 rounded-xl resize-none focus:ring-2 focus:ring-primary/20"
+                    className="bg-muted/30 border-border/50 rounded-xl resize-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
                 

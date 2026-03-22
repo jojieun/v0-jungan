@@ -51,11 +51,12 @@ export function HeroSection() {
             
             {/* Main Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-balance">
-              <span className="text-white font-bold">전문성으로</span>
-              <br />
-              <span className="text-white font-bold">가치를 창출하는</span>
-              <br />
-              <span className="font-[var(--font-heading)] text-primary-foreground bg-primary px-4 py-1 inline-block mt-2">정안경제연구원</span>
+              <span className="text-white font-bold block">전문성으로</span>
+              <span className="text-white font-bold block">가치를 창출하는</span>
+              <span className="relative inline-block mt-3">
+                <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white relative z-10">정안경제연구원</span>
+                <span className="absolute bottom-0 left-0 right-0 h-4 bg-primary/80 -skew-x-3 z-0"></span>
+              </span>
             </h1>
             
             {/* Description */}
@@ -76,7 +77,7 @@ export function HeroSection() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-white/30 text-white hover:bg-white/10 hover:text-white rounded-full px-8 backdrop-blur-sm"
+                className="border-2 border-white/50 bg-white/10 text-white hover:bg-white hover:text-secondary rounded-full px-8 backdrop-blur-sm"
               >
                 <FileText className="mr-2 w-4 h-4" />
                 연구실적 보기

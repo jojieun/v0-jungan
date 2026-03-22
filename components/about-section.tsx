@@ -36,31 +36,40 @@ export function AboutSection() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header with Bold Design */}
-        <div className="relative mb-16">
-          {/* Creative Header Background */}
-          <div className="relative bg-gradient-to-r from-secondary via-secondary/95 to-primary rounded-3xl p-10 md:p-14 overflow-hidden">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/30 rounded-full blur-2xl translate-y-1/2 -translate-x-1/4" />
-            <div className="absolute inset-0 opacity-10" style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-              backgroundSize: '32px 32px'
-            }} />
-            
-            <div className="relative text-center">
-              <span className="inline-block text-primary-foreground/80 font-medium text-sm uppercase tracking-[0.2em] mb-4 bg-white/10 px-4 py-1.5 rounded-full">About Us</span>
-              <h2 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
-                연구원 소개
-              </h2>
-              <p className="text-white/70 mt-4 max-w-xl mx-auto text-lg">
-                신뢰와 전문성을 바탕으로 최적의 솔루션을 제공합니다
-              </p>
-            </div>
+      {/* Section Header with Wide Background Image */}
+      <div className="relative mb-16">
+        <div className="relative w-full h-72 md:h-80 overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url('/images/hero-research.jpg')`,
+            }}
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/85 to-primary/80" />
+          
+          {/* Decorative Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-64 h-64 border border-white/10 rounded-full" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 border border-white/10 rounded-full" />
+            <div className="absolute top-1/2 left-1/4 w-40 h-40 border border-white/5 rounded-full" />
+          </div>
+          
+          {/* Content */}
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+            <span className="inline-block text-white/80 font-medium text-sm uppercase tracking-[0.2em] mb-4 bg-white/10 px-4 py-1.5 rounded-full border border-white/20">About Us</span>
+            <h2 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
+              연구원 소개
+            </h2>
+            <p className="text-white/70 mt-4 max-w-xl mx-auto text-lg">
+              신뢰와 전문성을 바탕으로 최적의 솔루션을 제공합니다
+            </p>
           </div>
         </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Introduction Card */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-white rounded-2xl p-8 lg:p-10 border border-border shadow-lg">
