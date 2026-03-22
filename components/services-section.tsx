@@ -75,65 +75,94 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-24 bg-muted/50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(122,15,29,0.15) 1px, transparent 0)`,
-        backgroundSize: '40px 40px'
-      }} />
+    <section id="services" className="py-24 relative overflow-hidden">
+      {/* Full-width Background with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-[#152a45]" />
+      
+      {/* Geometric Pattern Overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full" style={{
+          backgroundImage: `
+            linear-gradient(30deg, transparent 49.5%, rgba(255,255,255,0.1) 49.5%, rgba(255,255,255,0.1) 50.5%, transparent 50.5%),
+            linear-gradient(-30deg, transparent 49.5%, rgba(255,255,255,0.1) 49.5%, rgba(255,255,255,0.1) 50.5%, transparent 50.5%)
+          `,
+          backgroundSize: '60px 100px'
+        }} />
+      </div>
+      
+      {/* Decorative Circles */}
+      <div className="absolute top-20 right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-secondary font-medium text-sm uppercase tracking-wider bg-secondary/10 px-4 py-1.5 rounded-full mb-4">Services</span>
-          <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
-            주요업무
-          </h2>
-          <div className="flex items-center justify-center gap-2 mt-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-secondary rounded-full" />
-            <div className="w-3 h-3 bg-secondary rounded-full" />
-            <div className="w-12 h-1 bg-gradient-to-l from-transparent to-secondary rounded-full" />
+        {/* Section Header with Creative Design */}
+        <div className="relative mb-20">
+          {/* Large Background Text */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
+            <span className="text-[120px] sm:text-[180px] lg:text-[220px] font-serif font-black text-white/[0.03] tracking-tight whitespace-nowrap">
+              SERVICES
+            </span>
           </div>
-          <p className="text-muted-foreground mt-8 max-w-2xl mx-auto text-lg">
-            정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
-            다양한 전문 서비스를 제공합니다.
-          </p>
+          
+          {/* Main Title */}
+          <div className="relative text-center pt-8 pb-4">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+              <span className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Our Services</span>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+            </div>
+            
+            <h2 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
+              주요
+              <span className="relative inline-block mx-3">
+                업무
+                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-primary/30 -skew-x-6" />
+              </span>
+              안내
+            </h2>
+            
+            <p className="text-white/70 mt-6 max-w-2xl mx-auto text-lg">
+              정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
+              다양한 전문 서비스를 제공합니다.
+            </p>
+          </div>
         </div>
 
-        {/* Services Grid - Bento Style */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, index) => (
             <Link
               key={index}
               href={service.href}
-              className={`group relative bg-background rounded-2xl p-6 card-hover border border-border/50 overflow-hidden ${
-                service.featured ? 'lg:row-span-1' : ''
+              className={`group relative bg-white/10 backdrop-blur-sm hover:bg-white/15 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 ${
+                service.featured ? 'ring-2 ring-primary/50' : ''
               }`}
             >
-              {/* Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              
-              {/* Top Line Accent */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Featured Badge */}
+              {service.featured && (
+                <div className="absolute -top-3 left-6 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
+                  핵심 서비스
+                </div>
+              )}
               
               <div className="relative">
                 {/* Icon & Arrow */}
                 <div className="flex items-start justify-between mb-5">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
                     service.featured 
-                      ? 'bg-gradient-to-br from-primary to-[#9a1f30] text-white shadow-lg shadow-primary/20' 
-                      : 'bg-secondary/10 text-secondary group-hover:bg-gradient-to-br group-hover:from-secondary group-hover:to-[#2a4d7a] group-hover:text-white group-hover:shadow-lg'
+                      ? 'bg-primary text-white shadow-lg shadow-primary/30' 
+                      : 'bg-white/20 text-white group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/30'
                   }`}>
-                    <service.icon className="w-6 h-6" />
+                    <service.icon className="w-7 h-7" />
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
+                  <ArrowUpRight className="w-5 h-5 text-white/50 opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
                 </div>
                 
                 {/* Content */}
-                <h3 className="font-serif font-bold text-xl text-foreground mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-serif font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-white/60 text-sm leading-relaxed group-hover:text-white/80 transition-colors">
                   {service.description}
                 </p>
                 
@@ -143,6 +172,9 @@ export function ServicesSection() {
                   <ArrowUpRight className="w-4 h-4 ml-1" />
                 </div>
               </div>
+              
+              {/* Bottom Glow on Hover */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
           ))}
         </div>
