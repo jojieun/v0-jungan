@@ -31,23 +31,23 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="py-24 bg-background relative overflow-hidden">
+    <section id="about" className="bg-background relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
       
-      {/* Section Header with Wide Background Image */}
-      <div className="relative mb-16">
+      {/* Section Header with Wide Background Image - Fixed */}
+      <div className="relative">
         <div className="relative w-full h-72 md:h-80 overflow-hidden">
-          {/* Background Image */}
+          {/* Background Image - Fixed */}
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center bg-fixed"
             style={{
-              backgroundImage: `url('/images/hero-research.jpg')`,
+              backgroundImage: `url('/images/section-bg.jpg')`,
             }}
           />
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/85 to-primary/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/80 to-primary/75" />
           
           {/* Decorative Elements */}
           <div className="absolute inset-0 overflow-hidden">
@@ -69,12 +69,12 @@ export function AboutSection() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative py-20">
         {/* Introduction Card */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-white rounded-2xl p-8 lg:p-10 border border-border shadow-lg">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-primary to-secondary rounded-full" />
+            <div className="flex items-start gap-4">
+              <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-primary to-secondary rounded-full flex-shrink-0" />
               <div>
                 <p className="text-lg lg:text-xl text-foreground leading-relaxed mb-4">
                   <strong className="text-primary font-bold">사단법인 정안경제연구원</strong>은 

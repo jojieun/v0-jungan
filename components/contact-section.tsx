@@ -57,39 +57,43 @@ export function ContactSection() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider bg-primary/10 px-4 py-1.5 rounded-full mb-4">Contact</span>
           <h2 className="font-[var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
             문의하기
           </h2>
-          <p className="text-muted-foreground mt-6 max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             연구 협력, 서비스 문의, 상담 등 다양한 문의를 환영합니다.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid lg:grid-cols-5 gap-8 items-start">
           {/* Contact Info - Left Side */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="font-bold text-2xl text-foreground mb-6">연락처 정보</h3>
+          <div className="lg:col-span-2">
+            <h3 className="font-bold text-xl text-foreground mb-4">연락처 정보</h3>
             
-            {contactInfo.map((info, index) => (
-              <div 
-                key={index} 
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors"
-              >
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <info.icon className="w-5 h-5 text-primary" />
+            <div className="space-y-1">
+              {contactInfo.map((info, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center gap-3 py-3 border-b border-border/50 last:border-b-0"
+                >
+                  <div className="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <info.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xs text-muted-foreground">{info.label}</span>
+                      <span className="font-medium text-foreground text-sm">{info.value}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{info.subValue}</p>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{info.label}</p>
-                  <p className="font-semibold text-foreground">{info.value}</p>
-                  <p className="text-sm text-muted-foreground">{info.subValue}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
 
             {/* Map */}
-            <div className="aspect-video bg-muted rounded-2xl overflow-hidden border border-border/50 shadow-lg mt-6">
+            <div className="aspect-[4/3] bg-muted rounded-xl overflow-hidden border border-border/50 shadow-sm mt-4">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.6371671046473!2d129.07659!3d35.17788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDEwJzQwLjQiTiAxMjnCsDA0JzM1LjciRQ!5e0!3m2!1sko!2skr!4v1234567890"
                 width="100%"
@@ -105,18 +109,14 @@ export function ContactSection() {
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-border shadow-lg relative overflow-hidden">
-              {/* Form Decoration */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
-              
-              <h3 className="font-bold text-2xl text-foreground mb-8 relative">
+            <div className="bg-white rounded-2xl p-6 lg:p-8 border border-border shadow-sm relative overflow-hidden">
+              <h3 className="font-bold text-xl text-foreground mb-6">
                 문의 양식
-                <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mt-3" />
               </h3>
               
-              <form onSubmit={handleSubmit} className="space-y-5 relative">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div className="space-y-2">
+              <form onSubmit={handleSubmit} className="space-y-4 relative">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
                     <label className="text-sm font-medium text-foreground flex items-center gap-1">
                       이름 <span className="text-primary">*</span>
                     </label>
@@ -125,10 +125,10 @@ export function ContactSection() {
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="홍길동"
                       required
-                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-lg h-11 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <label className="text-sm font-medium text-foreground flex items-center gap-1">
                       연락처 <span className="text-primary">*</span>
                     </label>
@@ -138,34 +138,34 @@ export function ContactSection() {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="010-0000-0000"
                       required
-                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-lg h-11 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                 </div>
                 
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div className="space-y-2">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
                     <label className="text-sm font-medium text-foreground">이메일</label>
                     <Input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="example@email.com"
-                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-lg h-11 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <label className="text-sm font-medium text-foreground">소속</label>
                     <Input
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                       placeholder="회사/기관명"
-                      className="bg-muted/30 border-border/50 rounded-xl h-12 focus:ring-2 focus:ring-primary/20"
+                      className="bg-muted/30 border-border/50 rounded-lg h-11 focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
                 </div>
                 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-sm font-medium text-foreground flex items-center gap-1">
                     문의 분야 <span className="text-primary">*</span>
                   </label>
@@ -173,7 +173,7 @@ export function ContactSection() {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     required
-                    className="w-full h-12 px-4 rounded-xl border border-border/50 bg-muted/30 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    className="w-full h-11 px-4 rounded-lg border border-border/50 bg-muted/30 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary"
                   >
                     <option value="">선택해주세요</option>
                     <option value="research">학술연구</option>
@@ -189,7 +189,7 @@ export function ContactSection() {
                   </select>
                 </div>
                 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-sm font-medium text-foreground flex items-center gap-1">
                     문의 내용 <span className="text-primary">*</span>
                   </label>
@@ -197,20 +197,20 @@ export function ContactSection() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="문의하실 내용을 입력해 주세요."
-                    rows={5}
+                    rows={4}
                     required
-                    className="bg-muted/30 border-border/50 rounded-xl resize-none focus:ring-2 focus:ring-primary/20"
+                    className="bg-muted/30 border-border/50 rounded-lg resize-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
                 
                 <Button 
                   type="submit" 
                   size="lg"
-                  className="w-full bg-gradient-to-r from-primary to-[#9a1f30] hover:from-primary/90 hover:to-[#9a1f30]/90 text-white rounded-xl h-14 shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+                  className="w-full bg-gradient-to-r from-primary to-[#9a1f30] hover:from-primary/90 hover:to-[#9a1f30]/90 text-white rounded-lg h-12 shadow-md shadow-primary/20 transition-all hover:shadow-lg hover:shadow-primary/25"
                 >
-                  <Send className="w-5 h-5 mr-2" />
+                  <Send className="w-4 h-4 mr-2" />
                   문의하기
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </form>
             </div>

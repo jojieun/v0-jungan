@@ -73,7 +73,7 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-24 bg-muted/30 relative overflow-hidden">
+    <section id="services" className="bg-muted/30 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -82,18 +82,18 @@ export function ServicesSection() {
         }} />
       </div>
       
-      {/* Section Header with Wide Background Image */}
-      <div className="relative mb-16">
+      {/* Section Header with Wide Background Image - Fixed */}
+      <div className="relative">
         <div className="relative w-full h-72 md:h-80 overflow-hidden">
-          {/* Background Image */}
+          {/* Background Image - Fixed */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-fixed"
             style={{
-              backgroundImage: `url('/images/hero-research.jpg')`,
+              backgroundImage: `url('/images/section-bg.jpg')`,
             }}
           />
           {/* Overlay - Different gradient direction for variety */}
-          <div className="absolute inset-0 bg-gradient-to-l from-secondary/95 via-primary/85 to-[#9a1f30]/90" />
+          <div className="absolute inset-0 bg-gradient-to-l from-primary/90 via-[#9a1f30]/85 to-secondary/90" />
           
           {/* Decorative Elements */}
           <div className="absolute inset-0 overflow-hidden">
@@ -120,7 +120,7 @@ export function ServicesSection() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative py-20">
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, index) => (

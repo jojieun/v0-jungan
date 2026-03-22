@@ -2,13 +2,9 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, FileText, ChevronDown } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 
 export function HeroSection() {
-  const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-  }
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -41,7 +37,7 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-up">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-8 border border-white/20">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-full mb-4 border border-white/20">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -52,10 +48,11 @@ export function HeroSection() {
             {/* Main Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-balance">
               <span className="text-white font-bold block">전문성으로</span>
-              <span className="text-white font-bold block">가치를 창출하는</span>
-              <span className="relative inline-block mt-3">
-                <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white relative z-10">정안경제연구원</span>
-                <span className="absolute bottom-0 left-0 right-0 h-4 bg-primary/80 -skew-x-3 z-0"></span>
+              <span className="text-white font-bold block mb-2">가치를 창출하는</span>
+              <span className="relative inline-block">
+                <span className="font-[var(--font-heading)] text-5xl sm:text-6xl lg:text-7xl text-primary bg-white px-4 py-2 rounded-lg shadow-2xl">
+                  정안경제연구원
+                </span>
               </span>
             </h1>
             
@@ -77,7 +74,7 @@ export function HeroSection() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-white/50 bg-white/10 text-white hover:bg-white hover:text-secondary rounded-full px-8 backdrop-blur-sm"
+                className="border-2 border-white bg-white/20 text-white hover:bg-white hover:text-secondary rounded-full px-8 backdrop-blur-sm"
               >
                 <FileText className="mr-2 w-4 h-4" />
                 연구실적 보기
@@ -119,17 +116,24 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <button 
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group"
-      >
-        <span className="text-xs tracking-wider">SCROLL</span>
-        <ChevronDown className="w-5 h-5 animate-bounce" />
-      </button>
-
-      {/* Bottom Gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* Stats Bar - Transition Element */}
+      <div className="absolute bottom-0 left-0 right-0 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 py-6 gap-6">
+            {[
+              { label: "전문 서비스", value: "9개 분야" },
+              { label: "연구 품질", value: "100% 검증" },
+              { label: "고객 만족", value: "최우선 가치" },
+              { label: "업무 처리", value: "신속 정확" },
+            ].map((item, idx) => (
+              <div key={idx} className="text-center">
+                <div className="text-primary font-bold text-lg">{item.value}</div>
+                <div className="text-muted-foreground text-sm">{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
