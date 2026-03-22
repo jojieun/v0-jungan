@@ -66,17 +66,20 @@ export function ContactSection() {
           {/* Contact Info - Left Side */}
           <div className="lg:col-span-2 flex flex-col gap-5">
             {/* 연락처 정보 카드 */}
-            <div className="rounded-2xl p-6 text-foreground">
-              <h3 className="font-bold text-base text-foreground mb-4">연락처 정보</h3>
-              <div className="space-y-3">
+            <div className="rounded-2xl p-6 text-foreground border-l-4 border-primary">
+              <h3 className="font-bold text-base text-foreground mb-4 flex items-center gap-2">
+                <div className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full" />
+                연락처 정보
+              </h3>
+              <div className="space-y-4">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-muted rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <info.icon className="w-4 h-4 text-foreground/60" />
+                  <div key={index} className="flex items-start gap-3 pb-3 border-b border-border/30 last:border-b-0 last:pb-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0">
+                      <info.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-muted-foreground mb-0.5">{info.label}</p>
-                      <p className="font-medium text-foreground text-sm">{info.value}</p>
+                      <p className="text-xs font-semibold text-primary/70 mb-0.5 uppercase tracking-wider">{info.label}</p>
+                      <p className="font-bold text-foreground text-sm">{info.value}</p>
                       <p className="text-xs text-muted-foreground">{info.subValue}</p>
                     </div>
                   </div>

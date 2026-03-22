@@ -44,7 +44,7 @@ export function HeroSection() {
             <h1 className="leading-tight mb-8 text-balance">
               <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block">전문성으로</span>
               <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block">가치를 창출하는</span>
-              <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-secondary block mt-2">
+              <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-primary font-bold block mt-2 drop-shadow-lg">
                 정안경제연구원
               </span>
             </h1>

@@ -49,20 +49,31 @@ export function AboutSection() {
         </div>
 
         {/* Introduction Card - Wide Style */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl px-8 py-6 lg:px-10 lg:py-7 border border-border/40 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="w-1 h-full min-h-[80px] bg-gradient-to-b from-primary to-secondary rounded-full flex-shrink-0" />
-              <div>
-                <p className="text-lg lg:text-lg text-foreground leading-relaxed mb-4">
-                  <strong className="text-primary font-bold">사단법인 정안경제연구원</strong>은 
-                  학술연구, 계약금액조정, 원가계산, 건설클레임 등 전문 분야에서 
-                  체계적인 연구와 컨설팅 서비스를 제공하는 <span className="text-secondary font-semibold">신뢰할 수 있는 연구기관</span>입니다.
-                </p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  전문성과 신뢰를 바탕으로 고객에게 최적의 솔루션을 제공하며, 
-                  건설 및 경제 분야의 발전에 기여하고자 합니다.
-                </p>
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden">
+            {/* Decorative Background */}
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+            
+            {/* Content */}
+            <div className="relative bg-gradient-to-br from-white/80 to-white backdrop-blur-sm border-2 border-primary/10 px-8 py-7 lg:px-12 lg:py-9 shadow-sm">
+              <div className="flex items-start gap-6">
+                {/* Left Accent Line */}
+                <div className="w-1.5 h-full min-h-[100px] bg-gradient-to-b from-primary via-secondary to-transparent rounded-full flex-shrink-0 mt-0.5" />
+                
+                {/* Text Content */}
+                <div className="flex-1">
+                  <p className="text-lg lg:text-xl text-foreground leading-relaxed font-medium mb-3">
+                    <span className="text-primary font-bold">사단법인 정안경제연구원</span>은 
+                    학술연구, 계약금액조정, 원가계산, 건설클레임 등 전문 분야에서
+                  </p>
+                  <p className="text-lg lg:text-xl text-foreground leading-relaxed font-medium mb-4">
+                    체계적인 연구와 컨설팅 서비스를 제공하는 <span className="text-secondary font-bold">신뢰할 수 있는 연구기관</span>입니다.
+                  </p>
+                  <p className="text-muted-foreground text-base leading-relaxed">
+                    전문성과 신뢰를 바탕으로 고객에게 최적의 솔루션을 제공하며, 건설 및 경제 분야의 발전에 기여하고자 합니다.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
