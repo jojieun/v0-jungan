@@ -7,15 +7,8 @@ import { ArrowRight, FileText } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-research.jpg"
-          alt="정안경제연구원 연구 환경"
-          fill
-          className="object-cover"
-          priority
-        />
+      {/* Background Image - Fixed (parallax) */}
+      <div className="absolute inset-0" style={{ backgroundImage: "url('/images/hero-research.jpg')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="absolute inset-0 bg-gradient-to-br from-[#1F3A5F]/92 via-[#1F3A5F]/85 to-[#7A0F1D]/65" />
 
         {/* Subtle Grid Pattern */}
@@ -44,8 +37,13 @@ export function HeroSection() {
             <h1 className="leading-tight mb-8 text-balance">
               <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block">전문성으로</span>
               <span className="text-white font-bold text-4xl sm:text-5xl lg:text-6xl block">가치를 창출하는</span>
-              <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-primary font-bold block mt-2 drop-shadow-lg">
-                정안경제연구원
+              <span className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold block mt-2">
+                <span className="relative inline-block">
+                  <span className="relative z-10 text-white" style={{ WebkitTextStroke: "0.5px rgba(255,255,255,0.3)" }}>
+                    정안경제연구원
+                  </span>
+                  <span className="absolute left-0 bottom-1 w-full h-3 bg-primary/70 -z-0 rounded-sm" />
+                </span>
               </span>
             </h1>
 

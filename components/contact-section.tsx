@@ -66,7 +66,7 @@ export function ContactSection() {
           {/* Contact Info - Left Side */}
           <div className="lg:col-span-2 flex flex-col gap-5">
             {/* 연락처 정보 카드 */}
-            <div className="rounded-2xl p-6 text-foreground border-l-4 border-primary">
+            <div className="p-6 text-foreground">
               <h3 className="font-bold text-base text-foreground mb-4 flex items-center gap-2">
                 <div className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full" />
                 연락처 정보
