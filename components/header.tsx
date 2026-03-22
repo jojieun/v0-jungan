@@ -2,13 +2,22 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const navItems = [
     { 
@@ -69,17 +78,21 @@ export function Header() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? "bg-background/95 backdrop-blur-md shadow-lg" 
+        : "bg-transparent"
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/images/logo.png"
               alt="사단법인 정안경제연구원"
-              width={240}
-              height={60}
-              className="h-12 w-auto"
+              width={200}
+              height={50}
+              className="h-10 w-auto transition-transform group-hover:scale-105"
               priority
             />
           </Link>
@@ -95,21 +108,27 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-primary transition-colors text-sm font-medium"
+                  className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all text-sm font-medium ${
+                    isScrolled 
+                      ? "text-foreground hover:text-primary hover:bg-primary/5" 
+                      : "text-foreground/90 hover:text-primary hover:bg-white/10"
+                  }`}
                 >
                   {item.label}
-                  {item.subItems && <ChevronDown className="w-3 h-3" />}
+                  {item.subItems && <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />}
                 </Link>
                 
                 {/* Dropdown Menu */}
                 {item.subItems && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 pt-2 min-w-48">
-                    <div className="bg-background border border-border rounded-lg shadow-lg py-2">
-                      {item.subItems.map((subItem) => (
+                  <div className="absolute top-full left-0 pt-2 min-w-52">
+                    <div className="bg-background/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-xl py-3 overflow-hidden">
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary" />
+                      {item.subItems.map((subItem, idx) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
+                          className="block px-5 py-2.5 text-sm text-foreground hover:bg-primary/5 hover:text-primary transition-all hover:pl-6"
+                          style={{ animationDelay: `${idx * 0.05}s` }}
                         >
                           {subItem.label}
                         </Link>
@@ -123,14 +142,16 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button className="bg-gradient-to-r from-primary to-[#9a1f30] hover:from-primary/90 hover:to-[#9a1f30]/90 text-white rounded-full px-6 shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
               상담문의
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className={`lg:hidden p-2 rounded-full transition-colors ${
+              isScrolled ? "hover:bg-muted" : "hover:bg-white/10"
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="메뉴 열기"
           >
@@ -140,24 +161,24 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border max-h-[calc(100vh-5rem)] overflow-y-auto">
-            <nav className="flex flex-col gap-2">
+          <div className="lg:hidden py-4 border-t border-border/30 max-h-[calc(100vh-5rem)] overflow-y-auto bg-background/95 backdrop-blur-md rounded-b-2xl">
+            <nav className="flex flex-col gap-1 px-2">
               {navItems.map((item) => (
                 <div key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-foreground hover:text-primary transition-colors font-medium py-2 block"
+                    className="text-foreground hover:text-primary transition-colors font-medium py-2.5 px-3 block rounded-xl hover:bg-primary/5"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
                   </Link>
                   {item.subItems && (
-                    <div className="pl-4 flex flex-col gap-1">
+                    <div className="pl-4 flex flex-col gap-0.5 mb-2">
                       {item.subItems.map((subItem) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="text-muted-foreground hover:text-primary transition-colors text-sm py-1.5"
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm py-2 px-3 rounded-lg hover:bg-primary/5"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.label}
@@ -167,7 +188,7 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-4">
+              <Button className="bg-gradient-to-r from-primary to-[#9a1f30] text-white rounded-full w-full mt-4 shadow-lg">
                 상담문의
               </Button>
             </nav>

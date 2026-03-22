@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { Phone, Mail, MapPin } from "lucide-react"
 
 export function Footer() {
   const footerLinks = {
@@ -27,36 +28,62 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#333333] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-b from-[#1a1a1a] to-[#111111] text-white relative overflow-hidden">
+      {/* Top Gradient Line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary" />
+      
+      {/* Background Decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Main Footer */}
-        <div className="py-16 grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div className="py-16 grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12">
           {/* Logo & Info */}
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="block mb-4">
+          <div className="col-span-2">
+            <Link href="/" className="block mb-6 group">
               <Image
                 src="/images/logo.png"
                 alt="사단법인 정안경제연구원"
                 width={180}
                 height={45}
-                className="h-10 w-auto brightness-0 invert"
+                className="h-10 w-auto brightness-0 invert transition-transform group-hover:scale-105"
               />
             </Link>
-            <p className="text-white/60 text-sm leading-relaxed">
-              JungAn Economic<br />Research Institute
+            <p className="text-white/50 text-sm leading-relaxed mb-6">
+              JungAn Economic Research Institute
             </p>
+            
+            {/* Contact Quick Info */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 text-sm text-white/60 hover:text-white/90 transition-colors">
+                <Phone className="w-4 h-4 text-primary" />
+                <span>070-7010-8287</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-white/60 hover:text-white/90 transition-colors">
+                <Mail className="w-4 h-4 text-primary" />
+                <span>jung-an55@naver.com</span>
+              </div>
+              <div className="flex items-start gap-3 text-sm text-white/60">
+                <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <span>부산광역시 연제구 중앙대로 1193<br />삼조빌딩 2층</span>
+              </div>
+            </div>
           </div>
 
           {/* Footer Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-serif font-bold text-sm mb-4">{category}</h4>
-              <ul className="space-y-2">
+              <h4 className="font-serif font-bold text-sm mb-5 text-white/90 relative inline-block">
+                {category}
+                <div className="absolute -bottom-1 left-0 w-6 h-0.5 bg-gradient-to-r from-primary to-transparent rounded-full" />
+              </h4>
+              <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-white/60 hover:text-white text-sm transition-colors"
+                      className="text-white/50 hover:text-white text-sm transition-colors hover:pl-1"
                     >
                       {link.label}
                     </Link>
@@ -68,13 +95,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 py-6">
+        <div className="border-t border-white/10 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div className="text-white/60 text-sm space-y-1">
+            <div className="text-white/40 text-sm">
               <p>우편번호 (47506) 부산광역시 연제구 중앙대로 1193 삼조빌딩 2층</p>
-              <p>TEL: 070-7010-8287 | EMAIL: jung-an55@naver.com</p>
             </div>
-            <div className="text-white/60 text-sm">
+            <div className="text-white/40 text-sm">
               <p>&copy; 2026 사단법인 정안경제연구원. All rights reserved.</p>
             </div>
           </div>

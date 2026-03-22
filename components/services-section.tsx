@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { 
   BookOpen, 
@@ -9,7 +11,7 @@ import {
   Droplets, 
   FileSearch, 
   Ruler,
-  ArrowRight 
+  ArrowUpRight 
 } from "lucide-react"
 
 export function ServicesSection() {
@@ -19,6 +21,7 @@ export function ServicesSection() {
       title: "학술연구",
       description: "건설, 경제 분야의 학술연구 및 정책연구 수행",
       href: "/services/research",
+      featured: true,
     },
     {
       icon: Calculator,
@@ -43,6 +46,7 @@ export function ServicesSection() {
       title: "건설클레임",
       description: "건설공사 관련 분쟁 해결을 위한 전문 클레임 서비스",
       href: "/services/construction-claim",
+      featured: true,
     },
     {
       icon: Percent,
@@ -64,48 +68,81 @@ export function ServicesSection() {
     },
     {
       icon: Ruler,
-      title: "시공측량(상세도작성)",
+      title: "시공측량",
       description: "현장 시공측량 및 상세도면 작성 서비스",
       href: "/services/construction-survey",
     },
   ]
 
   return (
-    <section id="services" className="py-24 bg-muted">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-24 bg-muted/50 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(122,15,29,0.15) 1px, transparent 0)`,
+        backgroundSize: '40px 40px'
+      }} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">Services</span>
-          <h2 className="font-serif font-bold text-3xl sm:text-4xl text-foreground mt-2 text-balance">
+          <span className="inline-block text-secondary font-medium text-sm uppercase tracking-wider bg-secondary/10 px-4 py-1.5 rounded-full mb-4">Services</span>
+          <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
             주요업무
           </h2>
-          <div className="w-16 h-1 bg-primary mx-auto mt-4" />
-          <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-            정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 다양한 전문 서비스를 제공합니다.
+          <div className="flex items-center justify-center gap-2 mt-6">
+            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-secondary rounded-full" />
+            <div className="w-3 h-3 bg-secondary rounded-full" />
+            <div className="w-12 h-1 bg-gradient-to-l from-transparent to-secondary rounded-full" />
+          </div>
+          <p className="text-muted-foreground mt-8 max-w-2xl mx-auto text-lg">
+            정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
+            다양한 전문 서비스를 제공합니다.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Services Grid - Bento Style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, index) => (
             <Link
               key={index}
               href={service.href}
-              className="group bg-background rounded-lg p-6 hover:shadow-lg transition-all hover:-translate-y-1 border border-border"
+              className={`group relative bg-background rounded-2xl p-6 card-hover border border-border/50 overflow-hidden ${
+                service.featured ? 'lg:row-span-1' : ''
+              }`}
             >
-              <div className="bg-[#1F3A5F]/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                <service.icon className="w-6 h-6 text-[#1F3A5F] group-hover:text-primary transition-colors" />
+              {/* Hover Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              
+              {/* Top Line Accent */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+              
+              <div className="relative">
+                {/* Icon & Arrow */}
+                <div className="flex items-start justify-between mb-5">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                    service.featured 
+                      ? 'bg-gradient-to-br from-primary to-[#9a1f30] text-white shadow-lg shadow-primary/20' 
+                      : 'bg-secondary/10 text-secondary group-hover:bg-gradient-to-br group-hover:from-secondary group-hover:to-[#2a4d7a] group-hover:text-white group-hover:shadow-lg'
+                  }`}>
+                    <service.icon className="w-6 h-6" />
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </div>
+                
+                {/* Content */}
+                <h3 className="font-serif font-bold text-xl text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {service.description}
+                </p>
+                
+                {/* View More */}
+                <div className="mt-5 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                  <span>자세히 보기</span>
+                  <ArrowUpRight className="w-4 h-4 ml-1" />
+                </div>
               </div>
-              <h3 className="font-serif font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                {service.description}
-              </p>
-              <span className="inline-flex items-center text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                자세히 보기
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </span>
             </Link>
           ))}
         </div>
