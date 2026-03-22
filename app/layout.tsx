@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Playfair_Display } from 'next/font/google'
+import { Black_Han_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const playfair = Playfair_Display({ 
+const blackHanSans = Black_Han_Sans({ 
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400'],
   variable: '--font-heading'
 });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
       </head>
-      <body className={`${playfair.variable} font-sans antialiased`}>
+      <body className={`${blackHanSans.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

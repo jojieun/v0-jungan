@@ -76,9 +76,9 @@
 
 @theme inline {
   --font-sans: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-serif: 'Black Han Sans', 'Apple SD Gothic Neo', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
-  --font-heading: var(--font-heading), 'Playfair Display', serif;
+  --font-heading: var(--font-heading), 'Black Han Sans', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

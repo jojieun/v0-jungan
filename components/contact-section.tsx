@@ -28,28 +28,24 @@ export function ContactSection() {
       label: "주소",
       value: "부산광역시 연제구 중앙대로 1193",
       subValue: "삼조빌딩 2층 (우: 47506)",
-      color: "from-primary to-[#9a1f30]",
     },
     {
       icon: Phone,
       label: "전화",
       value: "070-7010-8287",
       subValue: "평일 09:00 - 18:00",
-      color: "from-secondary to-[#2a4d7a]",
     },
     {
       icon: Mail,
       label: "이메일",
       value: "jung-an55@naver.com",
       subValue: "문의 및 상담",
-      color: "from-primary to-[#9a1f30]",
     },
     {
       icon: Clock,
       label: "운영 시간",
       value: "월 - 금 09:00 ~ 18:00",
       subValue: "점심시간 12:00 ~ 13:00",
-      color: "from-secondary to-[#2a4d7a]",
     },
   ]
 
@@ -63,7 +59,7 @@ export function ContactSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider bg-primary/10 px-4 py-1.5 rounded-full mb-4">Contact</span>
-          <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
+          <h2 className="font-[var(--font-heading)] text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 text-balance">
             문의하기
           </h2>
           <div className="flex items-center justify-center gap-2 mt-6">
@@ -78,18 +74,18 @@ export function ContactSection() {
 
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Contact Info - Left Side */}
-          <div className="lg:col-span-2 space-y-6">
-            <h3 className="font-serif font-bold text-2xl text-foreground mb-8">연락처 정보</h3>
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="font-bold text-2xl text-foreground mb-6">연락처 정보</h3>
             
             {contactInfo.map((info, index) => (
               <div 
                 key={index} 
-                className="group flex gap-4 p-4 rounded-2xl bg-muted/50 border border-border/50 card-hover"
+                className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 border border-border/50 hover:bg-muted/80 transition-colors"
               >
-                <div className={`bg-gradient-to-br ${info.color} p-3 rounded-xl shadow-lg`}>
-                  <info.icon className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <info.icon className="w-5 h-5 text-primary" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{info.label}</p>
                   <p className="font-semibold text-foreground">{info.value}</p>
                   <p className="text-sm text-muted-foreground">{info.subValue}</p>
@@ -98,7 +94,7 @@ export function ContactSection() {
             ))}
 
             {/* Map */}
-            <div className="aspect-video bg-muted rounded-2xl overflow-hidden border border-border/50 shadow-lg mt-8">
+            <div className="aspect-video bg-muted rounded-2xl overflow-hidden border border-border/50 shadow-lg mt-6">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.6371671046473!2d129.07659!3d35.17788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDEwJzQwLjQiTiAxMjnCsDA0JzM1LjciRQ!5e0!3m2!1sko!2skr!4v1234567890"
                 width="100%"
@@ -118,7 +114,7 @@ export function ContactSection() {
               {/* Form Decoration */}
               <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
               
-              <h3 className="font-serif font-bold text-2xl text-foreground mb-8 relative">
+              <h3 className="font-bold text-2xl text-foreground mb-8 relative">
                 문의 양식
                 <div className="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mt-3" />
               </h3>

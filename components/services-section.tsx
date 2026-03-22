@@ -21,7 +21,6 @@ export function ServicesSection() {
       title: "학술연구",
       description: "건설, 경제 분야의 학술연구 및 정책연구 수행",
       href: "/services/research",
-      featured: true,
     },
     {
       icon: Calculator,
@@ -46,7 +45,6 @@ export function ServicesSection() {
       title: "건설클레임",
       description: "건설공사 관련 분쟁 해결을 위한 전문 클레임 서비스",
       href: "/services/construction-claim",
-      featured: true,
     },
     {
       icon: Percent,
@@ -75,56 +73,38 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
-      {/* Full-width Background with Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/95 to-[#152a45]" />
-      
-      {/* Geometric Pattern Overlay */}
-      <div className="absolute inset-0 opacity-10">
+    <section id="services" className="py-24 bg-muted/30 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-30">
         <div className="absolute top-0 left-0 w-full h-full" style={{
-          backgroundImage: `
-            linear-gradient(30deg, transparent 49.5%, rgba(255,255,255,0.1) 49.5%, rgba(255,255,255,0.1) 50.5%, transparent 50.5%),
-            linear-gradient(-30deg, transparent 49.5%, rgba(255,255,255,0.1) 49.5%, rgba(255,255,255,0.1) 50.5%, transparent 50.5%)
-          `,
-          backgroundSize: '60px 100px'
+          backgroundImage: `radial-gradient(circle at 1px 1px, #ddd 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
         }} />
       </div>
       
-      {/* Decorative Circles */}
-      <div className="absolute top-20 right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header with Creative Design */}
-        <div className="relative mb-20">
-          {/* Large Background Text */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
-            <span className="text-[120px] sm:text-[180px] lg:text-[220px] font-serif font-black text-white/[0.03] tracking-tight whitespace-nowrap">
-              SERVICES
-            </span>
-          </div>
-          
-          {/* Main Title */}
-          <div className="relative text-center pt-8 pb-4">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
-              <span className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Our Services</span>
-              <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+        <div className="relative mb-16">
+          {/* Creative Header Background */}
+          <div className="relative bg-gradient-to-br from-primary via-[#8a1f2f] to-secondary rounded-3xl p-10 md:p-14 overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2" />
+            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/30 rounded-full blur-3xl translate-y-1/2" />
+            <div className="absolute inset-0 opacity-5" style={{
+              backgroundImage: `linear-gradient(45deg, white 25%, transparent 25%), linear-gradient(-45deg, white 25%, transparent 25%), linear-gradient(45deg, transparent 75%, white 75%), linear-gradient(-45deg, transparent 75%, white 75%)`,
+              backgroundSize: '20px 20px'
+            }} />
+            
+            <div className="relative text-center">
+              <span className="inline-block text-primary-foreground/80 font-medium text-sm uppercase tracking-[0.2em] mb-4 bg-white/10 px-4 py-1.5 rounded-full">Our Services</span>
+              <h2 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
+                주요 업무 안내
+              </h2>
+              <p className="text-white/70 mt-4 max-w-2xl mx-auto text-lg">
+                정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
+                다양한 전문 서비스를 제공합니다.
+              </p>
             </div>
-            
-            <h2 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white text-balance leading-tight">
-              주요
-              <span className="relative inline-block mx-3">
-                업무
-                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-primary/30 -skew-x-6" />
-              </span>
-              안내
-            </h2>
-            
-            <p className="text-white/70 mt-6 max-w-2xl mx-auto text-lg">
-              정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 
-              다양한 전문 서비스를 제공합니다.
-            </p>
           </div>
         </div>
 
@@ -134,35 +114,22 @@ export function ServicesSection() {
             <Link
               key={index}
               href={service.href}
-              className={`group relative bg-white/10 backdrop-blur-sm hover:bg-white/15 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 ${
-                service.featured ? 'ring-2 ring-primary/50' : ''
-              }`}
+              className="group relative bg-white hover:bg-white rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              {/* Featured Badge */}
-              {service.featured && (
-                <div className="absolute -top-3 left-6 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
-                  핵심 서비스
-                </div>
-              )}
-              
               <div className="relative">
                 {/* Icon & Arrow */}
                 <div className="flex items-start justify-between mb-5">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
-                    service.featured 
-                      ? 'bg-primary text-white shadow-lg shadow-primary/30' 
-                      : 'bg-white/20 text-white group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/30'
-                  }`}>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all bg-muted text-foreground group-hover:bg-primary group-hover:text-white group-hover:shadow-lg group-hover:shadow-primary/30">
                     <service.icon className="w-7 h-7" />
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-white/50 opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" />
                 </div>
                 
                 {/* Content */}
-                <h3 className="font-serif font-bold text-xl text-white mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-bold text-xl text-foreground mb-3 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-white/60 text-sm leading-relaxed group-hover:text-white/80 transition-colors">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {service.description}
                 </p>
                 
@@ -173,8 +140,8 @@ export function ServicesSection() {
                 </div>
               </div>
               
-              {/* Bottom Glow on Hover */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Bottom Line on Hover */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </Link>
           ))}
         </div>

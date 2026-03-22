@@ -81,7 +81,7 @@ export function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
         ? "bg-background/95 backdrop-blur-md shadow-lg" 
-        : "bg-transparent"
+        : "bg-white/95 backdrop-blur-sm shadow-sm"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -90,9 +90,9 @@ export function Header() {
             <Image
               src="/images/logo.png"
               alt="사단법인 정안경제연구원"
-              width={280}
-              height={70}
-              className="h-14 md:h-16 w-auto transition-transform group-hover:scale-105"
+              width={180}
+              height={45}
+              className="h-9 md:h-10 w-auto transition-transform group-hover:scale-105"
               priority
             />
           </Link>
@@ -108,11 +108,7 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all text-sm font-medium ${
-                    isScrolled 
-                      ? "text-foreground hover:text-primary hover:bg-primary/5" 
-                      : "text-foreground/90 hover:text-primary hover:bg-white/10"
-                  }`}
+                  className="flex items-center gap-1 px-4 py-2 rounded-full transition-all text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5"
                 >
                   {item.label}
                   {item.subItems && <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />}

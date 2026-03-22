@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Phone, ChevronDown } from "lucide-react"
+import { ArrowRight, FileText, ChevronDown } from "lucide-react"
 
 export function HeroSection() {
   const scrollToAbout = () => {
@@ -50,12 +50,12 @@ export function HeroSection() {
             </div>
             
             {/* Main Title */}
-            <h1 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-balance">
-              <span className="text-white">전문성으로</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-balance">
+              <span className="text-white font-bold">전문성으로</span>
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary/80">가치를 창출하는</span>
+              <span className="text-white font-bold">가치를 창출하는</span>
               <br />
-              <span className="text-primary">정안경제연구원</span>
+              <span className="font-[var(--font-heading)] text-primary-foreground bg-primary px-4 py-1 inline-block mt-2">정안경제연구원</span>
             </h1>
             
             {/* Description */}
@@ -78,8 +78,8 @@ export function HeroSection() {
                 variant="outline" 
                 className="border-white/30 text-white hover:bg-white/10 hover:text-white rounded-full px-8 backdrop-blur-sm"
               >
-                <Phone className="mr-2 w-4 h-4" />
-                070-7010-8287
+                <FileText className="mr-2 w-4 h-4" />
+                연구실적 보기
               </Button>
             </div>
 
