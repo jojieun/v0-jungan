@@ -1,6 +1,29 @@
-import { Target, Eye, Award } from "lucide-react"
+import { Target, Eye, Heart, Shield } from "lucide-react"
 
 export function AboutSection() {
+  const values = [
+    {
+      icon: Target,
+      title: "전문성",
+      description: "건설, 경제 분야 전문 인력을 통한 체계적인 연구 수행",
+    },
+    {
+      icon: Eye,
+      title: "정확성",
+      description: "정밀한 분석과 검토를 통한 신뢰할 수 있는 결과 도출",
+    },
+    {
+      icon: Heart,
+      title: "고객중심",
+      description: "고객의 요구와 상황에 맞춘 맞춤형 서비스 제공",
+    },
+    {
+      icon: Shield,
+      title: "신뢰",
+      description: "투명한 업무 처리와 책임감 있는 서비스 실현",
+    },
+  ]
+
   return (
     <section id="about" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,46 +37,30 @@ export function AboutSection() {
         </div>
 
         {/* Introduction */}
-        <div className="max-w-3xl mx-auto text-center mb-20">
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            사단법인 정안경제연구원은 1992년 설립 이래, 
-            <span className="text-foreground font-medium"> 객관적이고 실증적인 경제 연구</span>를 
-            바탕으로 정책 대안을 제시해 왔습니다. 우리는 학계, 정부, 산업계와의 
-            긴밀한 협력을 통해 대한민국 경제 발전에 기여하고 있습니다.
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <p className="text-lg text-foreground leading-relaxed mb-6">
+            <strong className="text-primary">사단법인 정안경제연구원</strong>은 
+            학술연구, 계약금액조정, 원가계산, 건설클레임 등 전문 분야에서 
+            체계적인 연구와 컨설팅 서비스를 제공하는 연구기관입니다.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            전문성과 신뢰를 바탕으로 고객에게 최적의 솔루션을 제공하며, 
+            건설 및 경제 분야의 발전에 기여하고자 합니다.
           </p>
         </div>
 
-        {/* Mission, Vision, Values */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: Target,
-              title: "미션",
-              description: "실증적 데이터 분석과 깊이 있는 연구를 통해 지속 가능한 경제 발전을 위한 정책 대안을 제시합니다.",
-              color: "bg-primary",
-            },
-            {
-              icon: Eye,
-              title: "비전",
-              description: "대한민국을 대표하는 민간 경제 싱크탱크로서 국가 경제 정책 수립에 핵심적 역할을 수행합니다.",
-              color: "bg-[#1F3A5F]",
-            },
-            {
-              icon: Award,
-              title: "핵심 가치",
-              description: "객관성, 전문성, 독립성을 바탕으로 신뢰받는 연구 기관으로서의 위상을 확립합니다.",
-              color: "bg-[#333333]",
-            },
-          ].map((item, index) => (
+        {/* Core Values */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {values.map((value, index) => (
             <div
               key={index}
-              className="group bg-card border border-border rounded-lg p-8 hover:shadow-lg transition-shadow"
+              className="bg-muted rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
             >
-              <div className={`${item.color} w-14 h-14 rounded-lg flex items-center justify-center mb-6`}>
-                <item.icon className="w-7 h-7 text-white" />
+              <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+                <value.icon className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="font-serif font-bold text-xl text-foreground mb-4">{item.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+              <h3 className="font-serif font-bold text-lg text-foreground mb-2">{value.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
             </div>
           ))}
         </div>

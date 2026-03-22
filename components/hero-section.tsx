@@ -1,76 +1,82 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Phone } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center bg-[#1F3A5F]">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
+    <section className="relative min-h-screen flex items-center pt-20">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero-research.jpg"
+          alt="정안경제연구원 연구 환경"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1F3A5F]/95 via-[#1F3A5F]/80 to-[#1F3A5F]/60" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-white">
-            <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm">사단법인 정안경제연구원</span>
-            </div>
-            
-            <h1 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-balance">
-              <span className="text-white">신뢰의 경제 연구,</span>
-              <br />
-              <span className="text-primary">대한민국의 미래</span>를
-              <br />
-              <span className="text-white">설계합니다</span>
-            </h1>
-            
-            <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-xl">
-              정안경제연구원은 실증적 데이터 분석과 깊이 있는 정책 연구를 통해 
-              지속 가능한 경제 발전을 위한 해법을 제시합니다.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                연구 분야 보기
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
-                연구원 소개
-              </Button>
-            </div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div className="max-w-2xl">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
+            <span className="w-2 h-2 bg-primary rounded-full" />
+            <span className="text-white/90 text-sm font-medium">JungAn Economic Research Institute</span>
+          </div>
+          
+          {/* Main Title */}
+          <h1 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6 text-balance">
+            <span className="text-white">전문성과 신뢰를 바탕으로</span>
+            <br />
+            <span className="text-primary">새로운 가치</span>
+            <span className="text-white">를 창출합니다</span>
+          </h1>
+          
+          {/* Description */}
+          <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-xl">
+            사단법인 정안경제연구원은 학술연구, 계약금액조정, 원가계산, 건설클레임 등 
+            다양한 분야에서 전문적인 연구와 컨설팅 서비스를 제공합니다.
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              주요업무 안내
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
+              <Phone className="mr-2 w-4 h-4" />
+              070-7010-8287
+            </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 gap-6">
-            {[
-              { number: "32", label: "년 연구 역사", suffix: "+" },
-              { number: "150", label: "편 연구 보고서", suffix: "+" },
-              { number: "25", label: "명 전문 연구진", suffix: "" },
-              { number: "80", label: "개 협력 기관", suffix: "+" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 text-center"
+          {/* Service Tags */}
+          <div className="flex flex-wrap gap-2">
+            {["학술연구", "계약금액조정", "원가계산", "건설클레임", "개발부담금"].map((tag) => (
+              <span
+                key={tag}
+                className="bg-white/10 backdrop-blur-sm text-white/90 px-3 py-1.5 rounded-full text-sm border border-white/10"
               >
-                <p className="font-serif font-bold text-4xl lg:text-5xl text-white mb-2">
-                  {stat.number}<span className="text-primary">{stat.suffix}</span>
-                </p>
-                <p className="text-white/70 text-sm">{stat.label}</p>
-              </div>
+                {tag}
+              </span>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-3 bg-white/50 rounded-full animate-bounce" />
+      {/* Bottom Info Bar */}
+      <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm">
+            <div className="flex items-center gap-6 text-muted-foreground">
+              <span>부산광역시 연제구 중앙대로 1193 삼조빌딩 2층</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-muted-foreground">TEL: 070-7010-8287</span>
+              <span className="text-muted-foreground">EMAIL: jung-an55@naver.com</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -10,7 +10,9 @@ export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     organization: "",
+    subject: "",
     message: "",
   })
 
@@ -18,26 +20,27 @@ export function ContactSection() {
     e.preventDefault()
     // Handle form submission
     console.log(formData)
+    alert("문의가 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.")
   }
 
   const contactInfo = [
     {
       icon: MapPin,
       label: "주소",
-      value: "서울특별시 영등포구 여의도동 28-1",
-      subValue: "정안빌딩 10층",
+      value: "부산광역시 연제구 중앙대로 1193",
+      subValue: "삼조빌딩 2층 (우: 47506)",
     },
     {
       icon: Phone,
       label: "전화",
-      value: "02-784-0000",
+      value: "070-7010-8287",
       subValue: "평일 09:00 - 18:00",
     },
     {
       icon: Mail,
       label: "이메일",
-      value: "research@jeongan.org",
-      subValue: "문의 및 협력 제안",
+      value: "jung-an55@naver.com",
+      subValue: "문의 및 상담",
     },
     {
       icon: Clock,
@@ -58,7 +61,7 @@ export function ContactSection() {
           </h2>
           <div className="w-16 h-1 bg-primary mx-auto mt-4" />
           <p className="text-muted-foreground mt-6 max-w-2xl mx-auto">
-            연구 협력, 자료 요청, 세미나 참여 등 다양한 문의를 환영합니다.
+            연구 협력, 서비스 문의, 상담 등 다양한 문의를 환영합니다.
           </p>
         </div>
 
@@ -81,14 +84,18 @@ export function ContactSection() {
               ))}
             </div>
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <div className="mt-8 aspect-video bg-muted rounded-lg overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <p className="text-muted-foreground text-sm">지도 영역</p>
-                </div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.6371671046473!2d129.07659!3d35.17788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDEwJzQwLjQiTiAxMjnCsDA0JzM1LjciRQ!5e0!3m2!1sko!2skr!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="정안경제연구원 위치"
+              />
             </div>
           </div>
 
@@ -111,28 +118,65 @@ export function ContactSection() {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">
-                    이메일 <span className="text-primary">*</span>
+                    연락처 <span className="text-primary">*</span>
+                  </label>
+                  <Input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="010-0000-0000"
+                    required
+                    className="bg-background"
+                  />
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">
+                    이메일
                   </label>
                   <Input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="example@email.com"
-                    required
+                    className="bg-background"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">
+                    소속
+                  </label>
+                  <Input
+                    value={formData.organization}
+                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                    placeholder="회사/기관명"
                     className="bg-background"
                   />
                 </div>
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground mb-1.5 block">
-                  소속
+                  문의 분야 <span className="text-primary">*</span>
                 </label>
-                <Input
-                  value={formData.organization}
-                  onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                  placeholder="회사/기관명"
-                  className="bg-background"
-                />
+                <select
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  required
+                  className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm"
+                >
+                  <option value="">선택해주세요</option>
+                  <option value="research">학술연구</option>
+                  <option value="contract">계약금액조정</option>
+                  <option value="cost">원가계산</option>
+                  <option value="extension">공기연장</option>
+                  <option value="claim">건설클레임</option>
+                  <option value="development">개발부담금</option>
+                  <option value="sewage">하수요금감면</option>
+                  <option value="design">설계도서검토</option>
+                  <option value="survey">시공측량</option>
+                  <option value="other">기타</option>
+                </select>
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground mb-1.5 block">
@@ -149,7 +193,7 @@ export function ContactSection() {
               </div>
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Send className="w-4 h-4 mr-2" />
-                문의 보내기
+                문의하기
               </Button>
             </form>
           </div>

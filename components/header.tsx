@@ -1,19 +1,71 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
   const navItems = [
-    { label: "연구원 소개", href: "#about" },
-    { label: "연구 분야", href: "#research" },
-    { label: "발간물", href: "#publications" },
-    { label: "소식", href: "#news" },
-    { label: "문의", href: "#contact" },
+    { 
+      label: "연구원소개", 
+      href: "/about",
+      subItems: [
+        { label: "인사말", href: "/about/greeting" },
+        { label: "연혁", href: "/about/history" },
+        { label: "조직도", href: "/about/organization" },
+        { label: "등록현황", href: "/about/registration" },
+        { label: "찾아오시는 길", href: "/about/location" },
+      ]
+    },
+    { 
+      label: "주요업무", 
+      href: "/services",
+      subItems: [
+        { label: "학술연구", href: "/services/research" },
+        { label: "계약금액조정", href: "/services/contract-adjustment" },
+        { label: "원가계산", href: "/services/cost-calculation" },
+        { label: "공기연장", href: "/services/extension" },
+        { label: "건설클레임", href: "/services/construction-claim" },
+        { label: "개발부담금", href: "/services/development-charge" },
+        { label: "하수요금감면", href: "/services/sewage-reduction" },
+        { label: "설계도서검토", href: "/services/design-review" },
+        { label: "시공측량(상세도작성)", href: "/services/construction-survey" },
+      ]
+    },
+    { 
+      label: "연구실적", 
+      href: "/achievements",
+      subItems: [
+        { label: "학술연구", href: "/achievements/research" },
+        { label: "계약금액조정", href: "/achievements/contract-adjustment" },
+        { label: "원가계산", href: "/achievements/cost-calculation" },
+        { label: "공기연장", href: "/achievements/extension" },
+        { label: "건설클레임", href: "/achievements/construction-claim" },
+        { label: "개발부담금", href: "/achievements/development-charge" },
+        { label: "하수요금감면", href: "/achievements/sewage-reduction" },
+      ]
+    },
+    { 
+      label: "자료실", 
+      href: "/resources",
+      subItems: [
+        { label: "참고자료", href: "/resources/references" },
+        { label: "관련법령", href: "/resources/laws" },
+      ]
+    },
+    { 
+      label: "커뮤니티", 
+      href: "/community",
+      subItems: [
+        { label: "공지사항", href: "/community/notices" },
+        { label: "고객문의", href: "/community/inquiry" },
+      ]
+    },
   ]
 
   return (
@@ -22,32 +74,57 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center">
-              <span className="text-primary-foreground font-serif font-bold text-lg">정</span>
-            </div>
-            <div className="hidden sm:block">
-              <p className="font-serif font-bold text-foreground text-lg leading-tight">정안경제연구원</p>
-              <p className="text-muted-foreground text-xs">Jeongan Economic Research Institute</p>
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="사단법인 정안경제연구원"
+              width={240}
+              height={60}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <Link
+              <div
                 key={item.href}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-colors text-sm font-medium"
+                className="relative"
+                onMouseEnter={() => setActiveDropdown(item.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {item.label}
-              </Link>
+                <Link
+                  href={item.href}
+                  className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-primary transition-colors text-sm font-medium"
+                >
+                  {item.label}
+                  {item.subItems && <ChevronDown className="w-3 h-3" />}
+                </Link>
+                
+                {/* Dropdown Menu */}
+                {item.subItems && activeDropdown === item.label && (
+                  <div className="absolute top-full left-0 pt-2 min-w-48">
+                    <div className="bg-background border border-border rounded-lg shadow-lg py-2">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              연구 협력 문의
+              상담문의
             </Button>
           </div>
 
@@ -63,20 +140,35 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            <nav className="flex flex-col gap-4">
+          <div className="lg:hidden py-4 border-t border-border max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-foreground hover:text-primary transition-colors text-sm font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                <div key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-foreground hover:text-primary transition-colors font-medium py-2 block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                  {item.subItems && (
+                    <div className="pl-4 flex flex-col gap-1">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          className="text-muted-foreground hover:text-primary transition-colors text-sm py-1.5"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-2">
-                연구 협력 문의
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-4">
+                상담문의
               </Button>
             </nav>
           </div>
