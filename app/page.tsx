@@ -33,10 +33,10 @@ export default function Home() {
             {/* Design A */}
             <Link 
               href="/design-a" 
-              className="group relative bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/10 hover:border-[#1a3b5d]/50 transition-all duration-500"
+              className="group relative bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/10 hover:border-[#1F3A5F]/50 transition-all duration-500"
             >
               {/* Preview Image */}
-              <div className="relative h-80 bg-gradient-to-br from-[#1a3b5d] to-[#0d1f33] overflow-hidden">
+              <div className="relative h-80 bg-gradient-to-br from-[#1F3A5F] via-[#1F3A5F]/85 to-[#7A0F1D]/65 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center px-8">
                     <Image
@@ -46,31 +46,31 @@ export default function Home() {
                       height={35}
                       className="h-8 w-auto mx-auto mb-4 brightness-0 invert"
                     />
-                    <p className="text-white/70 text-sm">원본 디자인</p>
+                    <p className="text-white/70 text-sm">모던 프로페셔널</p>
                   </div>
                 </div>
                 {/* Decorative Elements */}
-                <div className="absolute top-8 right-8 w-24 h-24 bg-white/5 rounded-full" />
-                <div className="absolute bottom-8 left-8 w-32 h-32 bg-[#1a3b5d]/30 rounded-full" />
+                <div className="absolute top-8 right-8 w-24 h-24 bg-white/5 rounded-full blur-xl" />
+                <div className="absolute bottom-8 left-8 w-32 h-32 bg-[#7A0F1D]/20 rounded-full blur-xl" />
               </div>
 
               {/* Content */}
               <div className="p-8">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[#1a3b5d] text-sm font-medium uppercase tracking-wider">Design A</span>
-                  <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-[#1a3b5d] group-hover:translate-x-1 transition-all" />
+                  <span className="text-[#1F3A5F] text-sm font-medium uppercase tracking-wider">Design A</span>
+                  <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-[#1F3A5F] group-hover:translate-x-1 transition-all" />
                 </div>
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-[#3b82f6] transition-colors">
-                  원본 디자인
+                <h2 className="text-2xl font-bold mb-3 group-hover:text-[#4a90d9] transition-colors">
+                  모던 프로페셔널
                 </h2>
                 <p className="text-white/60 mb-6">
-                  기존에 제작된 원본 디자인입니다. 네이비 블루 베이스에 
-                  전문적이고 신뢰감 있는 느낌을 담았습니다.
+                  현대적이고 전문적인 디자인. 네이비 블루와 버건디 그라데이션으로
+                  신뢰감과 역동성을 동시에 표현합니다.
                 </p>
                 
                 {/* Features */}
                 <div className="flex flex-wrap gap-2">
-                  {["네이비 블루", "전문적", "신뢰감", "기존 디자인"].map((tag) => (
+                  {["네이비 & 버건디", "둥근 모서리", "현대적 레이아웃", "글래스 효과"].map((tag) => (
                     <span key={tag} className="bg-white/5 text-white/60 px-3 py-1 rounded-full text-xs">
                       {tag}
                     </span>
@@ -79,7 +79,7 @@ export default function Home() {
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-[#1a3b5d]/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 bg-[#1F3A5F]/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </Link>
 
             {/* Design B */}
@@ -145,17 +145,17 @@ export default function Home() {
               <thead>
                 <tr className="border-b border-white/10">
                   <th className="text-left p-4 text-white/50 font-medium">특성</th>
-                  <th className="text-center p-4 text-[#3b82f6] font-medium">시안 A (원본)</th>
+                  <th className="text-center p-4 text-[#4a90d9] font-medium">시안 A (모던)</th>
                   <th className="text-center p-4 text-[#C9A962] font-medium">시안 B (클래식)</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { feature: "컬러 톤", a: "네이비 블루 베이스", b: "다크 네이비 베이스" },
-                  { feature: "포인트 컬러", a: "블루 계열", b: "골드 (#C9A962)" },
+                  { feature: "컬러 톤", a: "네이비 & 버건디 그라데이션", b: "다크 네이비 베이스" },
+                  { feature: "포인트 컬러", a: "버건디 (#7A0F1D)", b: "골드 (#C9A962)" },
                   { feature: "모서리 처리", a: "둥근 모서리 (Rounded)", b: "각진 모서리 (Sharp)" },
-                  { feature: "전체 느낌", a: "전문적, 신뢰감", b: "격조있음, 권위" },
-                  { feature: "타겟 이미지", a: "전문 연구기관", b: "전통있는 연구기관" },
+                  { feature: "전체 느낌", a: "현대적, 역동적", b: "격조있음, 권위" },
+                  { feature: "타겟 이미지", a: "혁신적 연구기관", b: "전통있는 연구기관" },
                 ].map((row, idx) => (
                   <tr key={idx} className="border-b border-white/5 last:border-b-0">
                     <td className="p-4 text-white/70">{row.feature}</td>
