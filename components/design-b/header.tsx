@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -101,19 +102,14 @@ export function HeaderDesignB() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/design-b" className="flex items-center gap-3 group">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 border-2 border-[#C9A962] flex items-center justify-center">
-                  <span className="text-[#C9A962] font-serif font-bold text-xl">JA</span>
-                </div>
-                <div className="hidden sm:block">
-                  <span className="text-white font-bold text-lg tracking-wide block">
-                    정안경제연구원
-                  </span>
-                  <span className="text-[#C9A962] text-[10px] tracking-[0.2em] uppercase">
-                    JungAn Economic Research
-                  </span>
-                </div>
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="사단법인 정안경제연구원"
+                width={180}
+                height={45}
+                className="h-9 md:h-10 w-auto transition-transform group-hover:scale-105 brightness-0 invert"
+                priority
+              />
             </Link>
 
             {/* Desktop Navigation */}

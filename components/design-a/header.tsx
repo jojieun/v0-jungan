@@ -87,16 +87,14 @@ export function HeaderDesignA() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/design-a" className="flex items-center gap-3 group">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-[#2D5A4A] flex items-center justify-center">
-                <span className="text-white font-bold text-lg">JA</span>
-              </div>
-              <div className="hidden sm:block">
-                <span className={`font-bold text-lg transition-colors ${isScrolled ? 'text-[#1a1a1a]' : 'text-[#1a1a1a]'}`}>
-                  정안경제연구원
-                </span>
-              </div>
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="사단법인 정안경제연구원"
+              width={180}
+              height={45}
+              className="h-9 md:h-10 w-auto transition-transform group-hover:scale-105"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
