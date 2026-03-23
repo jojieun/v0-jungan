@@ -91,10 +91,13 @@ export default function Home() {
               <div className="relative h-80 bg-gradient-to-br from-[#0F1C2E] to-[#1a2d45] overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center px-8">
-                    <div className="w-16 h-16 border-2 border-[#C9A962] flex items-center justify-center mx-auto mb-4">
-                      <span className="text-[#C9A962] font-serif font-bold text-2xl">JA</span>
-                    </div>
-                    <h3 className="text-white text-2xl font-bold mb-2">정안경제연구원</h3>
+                    <Image
+                      src="/images/logo.png"
+                      alt="정안경제연구원"
+                      width={140}
+                      height={35}
+                      className="h-8 w-auto mx-auto mb-4 brightness-0 invert"
+                    />
                     <p className="text-[#C9A962] text-sm tracking-widest uppercase">Classic Authority</p>
                   </div>
                 </div>
