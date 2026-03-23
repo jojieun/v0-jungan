@@ -62,7 +62,7 @@ export function AboutSection() {
               </span>
               입니다.
             </p>
-            <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base leading-relaxed max-w-4xl mx-auto whitespace-nowrap">
               전문성과 신뢰를 바탕으로 고객에게 최적의 솔루션을 제공하며, 건설 및 경제 분야의 발전에 기여하고자 합니다.
             </p>
           </div>
