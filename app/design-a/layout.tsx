@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '시안 A - 모던 미니멀 | 정안경제연구원',
-  description: '밝고 깔끔한 현대적 디자인 시안',
+  title: '시안 A - 원본 디자인 | 정안경제연구원',
+  description: '원본 디자인 시안',
 }
 
 export default function DesignALayout({
