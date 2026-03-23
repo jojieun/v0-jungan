@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
 
 export function FooterDesignB() {
@@ -37,17 +38,13 @@ export function FooterDesignB() {
           {/* Logo & Info */}
           <div className="col-span-2">
             <Link href="/design-b" className="block mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 border-2 border-[#C9A962] flex items-center justify-center">
-                  <span className="text-[#C9A962] font-serif font-bold text-xl">JA</span>
-                </div>
-                <div>
-                  <span className="font-bold text-lg text-white block">정안경제연구원</span>
-                  <span className="text-[#C9A962] text-[10px] tracking-[0.15em] uppercase">
-                    JungAn Economic Research
-                  </span>
-                </div>
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="사단법인 정안경제연구원"
+                width={160}
+                height={40}
+                className="h-9 w-auto brightness-0 invert"
+              />
             </Link>
             
             {/* Contact Quick Info */}
