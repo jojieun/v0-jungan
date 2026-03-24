@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사단법인 정안경제연구원</title>
+  <meta name="description" content="신뢰할 수 있는 경제 연구와 정책 제안을 통해 대한민국의 미래를 설계합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #7A0F1D;
+      --primary-light: #9a1f30;
+      --secondary: #1F3A5F;
+      --secondary-light: #2a4d7a;
+      --foreground: #333333;
+      --muted: #666666;
+      --muted-bg: #EAEAEA;
+      --background: #FFFFFF;
+      --border: #E5E5E5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+      color: var(--foreground);
+      background-color: var(--background);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Typography */
+    .font-heading {
+      font-family: 'Black Han Sans', sans-serif;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ping {
+      75%, 100% { transform: scale(2); opacity: 0; }
+    }
+
+    .animate-slide-up {
+      animation: slide-up 0.6s ease-out forwards;
+    }
+
+    .animate-pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 640px) {
+      .container { padding: 0 24px; }
+    }
+
+    @media (min-width: 1024px) {
+      .container { padding: 0 32px; }
+    }
+
+    /* ==================== HEADER ==================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo img {
+      height: 36px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .logo img { height: 40px; }
+    }
+
+    .logo:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Desktop Navigation */
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-desktop { display: flex; }
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--foreground);
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+      background: rgba(122, 15, 29, 0.05);
+    }
+
+    .nav-link svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover .nav-link svg {
+      transform: rotate(180deg);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding-top: 8px;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-inner {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      padding: 12px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dropdown-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .dropdown-link {
+      display: block;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: var(--foreground);
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-link:hover {
+      background: rgba(122, 15, 29, 0.05);
+      color: var(--primary);
+      padding-left: 24px;
+    }
+
+    /* CTA Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 4px 15px rgba(122, 15, 29, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 25px rgba(122, 15, 29, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .header-cta {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .header-cta { display: block; }
+    }
+
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 9999px;
+      transition: background 0.3s ease;
+    }
+
+    .mobile-menu-btn:hover {
+      background: var(--muted-bg);
+    }
+
+    @media (min-width: 1024px) {
+      .mobile-menu-btn { display: none; }
+    }
+
+    .mobile-menu-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Mobile Navigation */
+    .nav-mobile {
+      display: none;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+
+    .nav-mobile.active {
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-mobile { display: none !important; }
+    }
+
+    .mobile-nav-item > a {
+      display: block;
+      padding: 12px;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav-item > a:hover {
+      background: rgba(122, 15, 29, 0.05);
+      color: var(--primary);
+    }
+
+    .mobile-subnav {
+      padding-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .mobile-subnav a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: var(--muted);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-subnav a:hover {
+      background: rgba(122, 15, 29, 0.05);
+      color: var(--primary);
+    }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/images/hero-research.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(31, 58, 95, 0.92), rgba(31, 58, 95, 0.85), rgba(122, 15, 29, 0.65));
+    }
+
+    .hero-grid-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-glow-1 {
+      position: absolute;
+      top: 80px;
+      right: 80px;
+      width: 288px;
+      height: 288px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      filter: blur(48px);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      bottom: 160px;
+      left: 40px;
+      width: 384px;
+      height: 384px;
+      background: rgba(122, 15, 29, 0.1);
+      border-radius: 50%;
+      filter: blur(48px);
+      animation: pulse-glow 3s ease-in-out infinite 1s;
+    }
+
+    .hero-content {
+      position: relative;
+      padding-top: 112px;
+      padding-bottom: 80px;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-content {
+        padding-top: 128px;
+        padding-bottom: 96px;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      padding: 8px 20px;
+      border-radius: 9999px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .hero-badge-dot {
+      position: relative;
+      width: 8px;
+      height: 8px;
+    }
+
+    .hero-badge-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .hero-badge-dot::after {
+      content: '';
+      position: relative;
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    .hero-badge span:last-child {
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Hero Title */
+    .hero-title {
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+
+    .hero-title-line {
+      display: block;
+      color: white;
+      font-weight: 700;
+      font-size: 36px;
+    }
+
+    @media (min-width: 640px) {
+      .hero-title-line { font-size: 48px; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title-line { font-size: 60px; }
+    }
+
+    .hero-title-highlight {
+      display: block;
+      margin-top: 8px;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    @media (min-width: 640px) {
+      .hero-title-highlight { font-size: 48px; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title-highlight { font-size: 60px; }
+    }
+
+    .hero-title-highlight-inner {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title-highlight-text {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+
+    .hero-title-highlight-bar {
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 12px;
+      background: rgba(122, 15, 29, 0.7);
+      border-radius: 2px;
+      z-index: 0;
+    }
+
+    /* Hero Description */
+    .hero-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    /* Hero Buttons */
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 640px) {
+      .hero-buttons { flex-direction: row; }
+    }
+
+    .hero-btn {
+      padding: 14px 32px;
+      font-size: 16px;
+    }
+
+    .hero-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Service Tags */
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.85);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: background 0.3s ease;
+    }
+
+    .hero-tag:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-stats { display: grid; }
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: background 0.3s ease;
+      animation: slide-up 0.6s ease-out forwards;
+    }
+
+    .hero-stat:nth-child(2) { animation-delay: 0.1s; }
+    .hero-stat:nth-child(3) { animation-delay: 0.2s; }
+    .hero-stat:nth-child(4) { animation-delay: 0.3s; }
+
+    .hero-stat:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .hero-stat-number {
+      font-size: 30px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat-label {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+    }
+
+    /* ==================== ABOUT SECTION ==================== */
+    .about {
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0;
+    }
+
+    .about-bg-1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 384px;
+      height: 384px;
+      background: rgba(122, 15, 29, 0.05);
+      border-radius: 50%;
+      filter: blur(48px);
+      transform: translate(50%, -50%);
+    }
+
+    .about-bg-2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 384px;
+      height: 384px;
+      background: rgba(31, 58, 95, 0.05);
+      border-radius: 50%;
+      filter: blur(48px);
+      transform: translate(-50%, 50%);
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: rgba(122, 15, 29, 0.1);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 30px;
+      color: var(--foreground);
+      margin-top: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .section-title { font-size: 36px; }
+    }
+
+    @media (min-width: 1024px) {
+      .section-title { font-size: 48px; }
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 14px;
+    }
+
+    /* Introduction */
+    .about-intro {
+      border-top: 2px solid rgba(122, 15, 29, 0.15);
+      border-bottom: 2px solid rgba(122, 15, 29, 0.15);
+      padding: 40px 16px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .about-intro-text {
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 500;
+      max-width: 896px;
+      margin: 0 auto 16px;
+    }
+
+    @media (min-width: 1024px) {
+      .about-intro-text { font-size: 22px; }
+    }
+
+    .about-intro-text .primary {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .about-intro-text .secondary {
+      color: var(--secondary);
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .about-intro-text .secondary::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 6px;
+      background: rgba(31, 58, 95, 0.15);
+      border-radius: 2px;
+      z-index: -1;
+    }
+
+    .about-intro-sub {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 896px;
+      margin: 0 auto;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .value-card {
+      position: relative;
+      background: var(--background);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+
+    .value-card-overlay {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .value-card:hover .value-card-overlay {
+      opacity: 0.05;
+    }
+
+    .value-card-overlay.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    .value-card-overlay.secondary {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+    }
+
+    .value-number {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 48px;
+      font-weight: 700;
+      color: rgba(0,0,0,0.06);
+      transition: color 0.3s ease;
+    }
+
+    .value-card:hover .value-number {
+      color: rgba(122, 15, 29, 0.1);
+    }
+
+    .value-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .value-card:hover .value-icon {
+      transform: scale(1.1);
+    }
+
+    .value-icon.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    }
+
+    .value-icon.secondary {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+    }
+
+    .value-icon svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+
+    .value-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .value-card:hover .value-title {
+      color: var(--primary);
+    }
+
+    .value-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .value-bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .value-bottom-line.primary {
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+
+    .value-bottom-line.secondary {
+      background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
+    }
+
+    .value-card:hover .value-bottom-line {
+      transform: scaleX(1);
+    }
+
+    /* ==================== SERVICES SECTION ==================== */
+    .services {
+      background: rgba(234, 234, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-bg-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.3;
+      background-image: radial-gradient(circle at 1px 1px, #ddd 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    /* Services Header with Image */
+    .services-header-wrapper {
+      position: relative;
+      height: 288px;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .services-header-wrapper { height: 320px; }
+    }
+
+    .services-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('/images/services-closeup-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .services-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to left, rgba(122, 15, 29, 0.9), rgba(154, 31, 48, 0.85), rgba(31, 58, 95, 0.9));
+    }
+
+    .services-header-decor {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .services-header-decor-1 {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      width: 128px;
+      height: 128px;
+      border: 2px solid rgba(255,255,255,0.1);
+      transform: rotate(45deg);
+    }
+
+    .services-header-decor-2 {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 192px;
+      height: 192px;
+      border: 2px solid rgba(255,255,255,0.1);
+      transform: rotate(12deg);
+    }
+
+    .services-header-decor-3 {
+      position: absolute;
+      top: 50%;
+      right: 33%;
+      width: 96px;
+      height: 96px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+
+    .services-header-content {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .services-header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .services-header-title {
+      font-size: 36px;
+      color: white;
+    }
+
+    @media (min-width: 640px) {
+      .services-header-title { font-size: 48px; }
+    }
+
+    @media (min-width: 1024px) {
+      .services-header-title { font-size: 60px; }
+    }
+
+    .services-header-desc {
+      color: rgba(255,255,255,0.7);
+      margin-top: 16px;
+      max-width: 640px;
+      font-size: 18px;
+    }
+
+    /* Services Grid */
+    .services-content {
+      position: relative;
+      padding: 80px 0;
+    }
+
+    .services-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .service-card {
+      position: relative;
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(122, 15, 29, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+
+    .service-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--muted-bg);
+      color: var(--foreground);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(122, 15, 29, 0.3);
+    }
+
+    .service-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .service-arrow {
+      width: 20px;
+      height: 20px;
+      color: var(--muted);
+      opacity: 0;
+      transform: translate(8px, -8px);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-arrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .service-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .service-card:hover .service-title {
+      color: var(--primary);
+    }
+
+    .service-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .service-more {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-more {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-more svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .service-bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 0 0 16px 16px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-bottom-line {
+      transform: scaleX(1);
+    }
+
+    /* ==================== CONTACT SECTION ==================== */
+    .contact {
+      padding: 96px 0;
+      background: #F7F8FA;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 2fr 3fr;
+      }
+    }
+
+    /* Contact Info */
+    .contact-info {
+      padding: 24px;
+    }
+
+    .contact-info-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-info-title-bar {
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 9999px;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .contact-info-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-info-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, rgba(122, 15, 29, 0.1), rgba(31, 58, 95, 0.1));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-info-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+
+    .contact-info-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .contact-info-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(122, 15, 29, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+
+    .contact-info-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+
+    .contact-info-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Map */
+    .contact-map {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      height: 220px;
+      margin-top: 20px;
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Contact Form */
+    .contact-form-wrapper {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    @media (min-width: 1024px) {
+      .contact-form-wrapper { padding: 32px; }
+    }
+
+    .contact-form-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .form-row-2 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .form-label .required {
+      color: var(--primary);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #F7F8FA;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(122, 15, 29, 0.1);
+    }
+
+    .form-textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(122, 15, 29, 0.2);
+    }
+
+    .form-submit:hover {
+      background: var(--primary-light);
+      box-shadow: 0 6px 25px rgba(122, 15, 29, 0.3);
+    }
+
+    .form-submit svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      background: linear-gradient(to bottom, #1a1a1a, #111111);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-top-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+    }
+
+    .footer-bg-1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 384px;
+      height: 384px;
+      background: rgba(122, 15, 29, 0.05);
+      border-radius: 50%;
+      filter: blur(48px);
+    }
+
+    .footer-bg-2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 384px;
+      height: 384px;
+      background: rgba(31, 58, 95, 0.05);
+      border-radius: 50%;
+      filter: blur(48px);
+    }
+
+    .footer-main {
+      position: relative;
+      padding: 64px 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-main { grid-template-columns: 2fr repeat(4, 1fr); gap: 48px; }
+    }
+
+    .footer-brand {
+      grid-column: span 2;
+    }
+
+    @media (min-width: 768px) {
+      .footer-brand { grid-column: span 1; }
+    }
+
+    .footer-logo {
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .footer-logo img {
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover img {
+      transform: scale(1.05);
+    }
+
+    .footer-brand-en {
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s ease;
+    }
+
+    .footer-contact-item:hover {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .footer-contact-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item.address {
+      align-items: flex-start;
+    }
+
+    .footer-contact-item.address svg {
+      margin-top: 2px;
+    }
+
+    .footer-links-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-title::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 20px;
+      height: 1px;
+      background: rgba(122, 15, 29, 0.7);
+      border-radius: 9999px;
+    }
+
+    .footer-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-list a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .footer-links-list a:hover {
+      color: white;
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      position: relative;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .footer-bottom p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* SVG Icons */
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="#" class="logo">
+          <img src="/images/logo.png" alt="사단법인 정안경제연구원">
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop">
+          <div class="nav-item">
+            <a href="#about" class="nav-link">
+              연구원소개
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="#" class="dropdown-link">인사말</a>
+                <a href="#" class="dropdown-link">연혁</a>
+                <a href="#" class="dropdown-link">조직도</a>
+                <a href="#" class="dropdown-link">등록현황</a>
+                <a href="#" class="dropdown-link">찾아오시는 길</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="#services" class="nav-link">
+              주요업무
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="#" class="dropdown-link">학술연구</a>
+                <a href="#" class="dropdown-link">계약금액조정</a>
+                <a href="#" class="dropdown-link">원가계산</a>
+                <a href="#" class="dropdown-link">공기연장</a>
+                <a href="#" class="dropdown-link">건설클레임</a>
+                <a href="#" class="dropdown-link">개발부담금</a>
+                <a href="#" class="dropdown-link">하수요금감면</a>
+                <a href="#" class="dropdown-link">설계도서검토</a>
+                <a href="#" class="dropdown-link">시공측량(상세도작성)</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">
+              연구실적
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="#" class="dropdown-link">학술연구</a>
+                <a href="#" class="dropdown-link">계약금액조정</a>
+                <a href="#" class="dropdown-link">원가계산</a>
+                <a href="#" class="dropdown-link">공기연장</a>
+                <a href="#" class="dropdown-link">건설클레임</a>
+                <a href="#" class="dropdown-link">개발부담금</a>
+                <a href="#" class="dropdown-link">하수요금감면</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">
+              자료실
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="#" class="dropdown-link">참고자료</a>
+                <a href="#" class="dropdown-link">관련법령</a>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="#contact" class="nav-link">
+              커뮤니티
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="dropdown">
+              <div class="dropdown-inner">
+                <a href="#" class="dropdown-link">공지사항</a>
+                <a href="#" class="dropdown-link">고객문의</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- CTA Button -->
+        <div class="header-cta">
+          <button class="btn btn-primary">상담문의</button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="menuIcon">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="closeIcon" style="display: none;">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav class="nav-mobile" id="mobileNav">
+        <div class="mobile-nav-item">
+          <a href="#about">연구원소개</a>
+          <div class="mobile-subnav">
+            <a href="#">인사말</a>
+            <a href="#">연혁</a>
+            <a href="#">조직도</a>
+            <a href="#">등록현황</a>
+            <a href="#">찾아오시는 길</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#services">주요업무</a>
+          <div class="mobile-subnav">
+            <a href="#">학술연구</a>
+            <a href="#">계약금액조정</a>
+            <a href="#">원가계산</a>
+            <a href="#">공기연장</a>
+            <a href="#">건설클레임</a>
+            <a href="#">개발부담금</a>
+            <a href="#">하수요금감면</a>
+            <a href="#">설계도서검토</a>
+            <a href="#">시공측량(상세도작성)</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#">연구실적</a>
+          <div class="mobile-subnav">
+            <a href="#">학술연구</a>
+            <a href="#">계약금액조정</a>
+            <a href="#">원가계산</a>
+            <a href="#">공기연장</a>
+            <a href="#">건설클레임</a>
+            <a href="#">개발부담금</a>
+            <a href="#">하수요금감면</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#">자료실</a>
+          <div class="mobile-subnav">
+            <a href="#">참고자료</a>
+            <a href="#">관련법령</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#contact">커뮤니티</a>
+          <div class="mobile-subnav">
+            <a href="#">공지사항</a>
+            <a href="#">고객문의</a>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; margin-top: 16px;">상담문의</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-pattern"></div>
+      <div class="hero-glow-1"></div>
+      <div class="hero-glow-2"></div>
+    </div>
+
+    <div class="hero-content container">
+      <div class="hero-grid">
+        <div class="animate-slide-up">
+          <!-- Badge -->
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span>새로운 시작, 신뢰의 파트너</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="hero-title">
+            <span class="hero-title-line">전문성으로</span>
+            <span class="hero-title-line">가치를 창출하는</span>
+            <span class="hero-title-highlight font-heading">
+              <span class="hero-title-highlight-inner">
+                <span class="hero-title-highlight-text">정안경제연구원</span>
+                <span class="hero-title-highlight-bar"></span>
+              </span>
+            </span>
+          </h1>
+
+          <!-- Description -->
+          <p class="hero-desc">
+            학술연구부터 건설클레임까지, 체계적인 분석과
+            맞춤형 솔루션으로 고객의 성공을 함께합니다.
+          </p>
+
+          <!-- Buttons -->
+          <div class="hero-buttons">
+            <button class="btn btn-primary hero-btn">
+              주요업무 안내
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="btn btn-outline hero-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              연구실적 보기
+            </button>
+          </div>
+
+          <!-- Tags -->
+          <div class="hero-tags">
+            <span class="hero-tag">학술연구</span>
+            <span class="hero-tag">계약금액조정</span>
+            <span class="hero-tag">원가계산</span>
+            <span class="hero-tag">건설클레임</span>
+            <span class="hero-tag">개발부담금</span>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">9+</div>
+            <div class="hero-stat-label">전문 서비스 분야</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">100%</div>
+            <div class="hero-stat-label">고객 맞춤 솔루션</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">신뢰</div>
+            <div class="hero-stat-label">투명한 업무 처리</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">전문</div>
+            <div class="hero-stat-label">체계적인 분석력</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-bg-1"></div>
+    <div class="about-bg-2"></div>
+
+    <div class="container" style="position: relative;">
+      <div class="section-header">
+        <span class="section-badge">About Us</span>
+        <h2 class="section-title font-heading">연구원 소개</h2>
+        <p class="section-desc">신뢰와 전문성을 바탕으로 최적의 솔루션을 제공합니다</p>
+      </div>
+
+      <!-- Introduction -->
+      <div class="about-intro">
+        <p class="about-intro-text">
+          <span class="primary">사단법인 정안경제연구원</span>은
+          학술연구, 계약금액조정, 원가계산, 건설클레임 등 전문 분야에서
+          체계적인 연구와 컨설팅 서비스를 제공하는
+          <span class="secondary">신뢰할 수 있는 연구기관</span>입니다.
+        </p>
+        <p class="about-intro-sub">
+          전문성과 신뢰를 바탕으로 고객에게 최적의 솔루션을 제공하며, 건설 및 경제 분야의 발전에 기여하고자 합니다.
+        </p>
+      </div>
+
+      <!-- Values -->
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-card-overlay primary"></div>
+          <span class="value-number">01</span>
+          <div class="value-icon primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3 class="value-title">전문성</h3>
+          <p class="value-desc">건설, 경제 분야 전문 인력을 통한 체계적인 연구 수행</p>
+          <div class="value-bottom-line primary"></div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card-overlay secondary"></div>
+          <span class="value-number">02</span>
+          <div class="value-icon secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="value-title">정확성</h3>
+          <p class="value-desc">정밀한 분석과 검토를 통한 신뢰할 수 있는 결과 도출</p>
+          <div class="value-bottom-line secondary"></div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card-overlay primary"></div>
+          <span class="value-number">03</span>
+          <div class="value-icon primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="value-title">고객중심</h3>
+          <p class="value-desc">고객의 요구와 상황에 맞춘 맞춤형 서비스 제공</p>
+          <div class="value-bottom-line primary"></div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card-overlay secondary"></div>
+          <span class="value-number">04</span>
+          <div class="value-icon secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="value-title">신뢰</h3>
+          <p class="value-desc">투명한 업무 처리와 책임감 있는 서비스 실현</p>
+          <div class="value-bottom-line secondary"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="services-bg-pattern"></div>
+
+    <!-- Header with Background -->
+    <div class="services-header-wrapper">
+      <div class="services-header-bg"></div>
+      <div class="services-header-overlay"></div>
+      <div class="services-header-decor">
+        <div class="services-header-decor-1"></div>
+        <div class="services-header-decor-2"></div>
+        <div class="services-header-decor-3"></div>
+      </div>
+      <div class="services-header-content">
+        <span class="services-header-badge">Our Services</span>
+        <h2 class="services-header-title font-heading">주요 업무 안내</h2>
+        <p class="services-header-desc">정안경제연구원은 건설 및 경제 분야 전반에 걸쳐 다양한 전문 서비스를 제공합니다.</p>
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-content container">
+      <div class="services-grid">
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">학술연구</h3>
+          <p class="service-desc">건설, 경제 분야의 학술연구 및 정책연구 수행</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">계약금액조정</h3>
+          <p class="service-desc">물가변동, 설계변경 등에 따른 계약금액 조정 업무</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">원가계산</h3>
+          <p class="service-desc">정확한 원가분석을 통한 적정 원가 산정</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">공기연장</h3>
+          <p class="service-desc">공사기간 연장에 따른 추가비용 산정 및 클레임</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">건설클레임</h3>
+          <p class="service-desc">건설공사 관련 분쟁 해결을 위한 전문 클레임 서비스</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">개발부담금</h3>
+          <p class="service-desc">개발부담금 산정 및 감면을 위한 전문 컨설팅</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">하수요금감면</h3>
+          <p class="service-desc">하수도 사용료 감면을 위한 분석 및 신청 대행</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">설계도서검토</h3>
+          <p class="service-desc">설계도서의 적정성 검토 및 오류 분석</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+
+        <a href="#" class="service-card">
+          <div class="service-card-header">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+            </div>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <h3 class="service-title">시공측량</h3>
+          <p class="service-desc">현장 시공측량 및 상세도면 작성 서비스</p>
+          <div class="service-more">
+            <span>자세히 보기</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </div>
+          <div class="service-bottom-line"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Contact</span>
+        <h2 class="section-title font-heading">문의하기</h2>
+        <p class="section-desc">연구 의뢰, 서비스 문의, 상담 등 다양한 문의를 환영합니다.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div>
+          <div class="contact-info">
+            <h3 class="contact-info-title">
+              <span class="contact-info-title-bar"></span>
+              연락처 정보
+            </h3>
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="contact-info-content">
+                  <p class="contact-info-label">주소</p>
+                  <p class="contact-info-value">부산광역시 연제구 중앙대로 1193</p>
+                  <p class="contact-info-sub">삼조빌딩 2층 (우: 47506)</p>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="contact-info-content">
+                  <p class="contact-info-label">전화</p>
+                  <p class="contact-info-value">070-7010-8287</p>
+                  <p class="contact-info-sub">평일 09:00 - 18:00</p>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="contact-info-content">
+                  <p class="contact-info-label">이메일</p>
+                  <p class="contact-info-value">jung-an55@naver.com</p>
+                  <p class="contact-info-sub">문의 및 상담</p>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div class="contact-info-content">
+                  <p class="contact-info-label">운영시간</p>
+                  <p class="contact-info-value">월 - 금  09:00 ~ 18:00</p>
+                  <p class="contact-info-sub">점심시간 12:00 ~ 13:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="contact-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.6371671046473!2d129.07659!3d35.17788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDEwJzQwLjQiTiAxMjnCsDA0JzM1LjciRQ!5e0!3m2!1sko!2skr!4v1234567890"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="정안경제연구원 위치"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <h3 class="contact-form-title">문의 양식</h3>
+          <form id="contactForm">
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label class="form-label">이름 <span class="required">*</span></label>
+                <input type="text" class="form-input" name="name" placeholder="홍길동" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">연락처 <span class="required">*</span></label>
+                <input type="tel" class="form-input" name="phone" placeholder="010-0000-0000" required>
+              </div>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label class="form-label">이메일</label>
+                <input type="email" class="form-input" name="email" placeholder="example@email.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">소속</label>
+                <input type="text" class="form-input" name="organization" placeholder="회사/기관명">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">문의 분야 <span class="required">*</span></label>
+                <select class="form-select" name="subject" required>
+                  <option value="">선택해주세요</option>
+                  <option value="research">학술연구</option>
+                  <option value="contract">계약금액조정</option>
+                  <option value="cost">원가계산</option>
+                  <option value="extension">공기연장</option>
+                  <option value="claim">건설클레임</option>
+                  <option value="development">개발부담금</option>
+                  <option value="sewage">하수요금감면</option>
+                  <option value="design">설계도서검토</option>
+                  <option value="survey">시공측량</option>
+                  <option value="other">기타</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">문의 내용 <span class="required">*</span></label>
+                <textarea class="form-textarea" name="message" rows="5" placeholder="문의하실 내용을 입력해 주세요." required></textarea>
+              </div>
+            </div>
+            <button type="submit" class="form-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              문의하기
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top-line"></div>
+    <div class="footer-bg-1"></div>
+    <div class="footer-bg-2"></div>
+
+    <div class="container">
+      <div class="footer-main">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <img src="/images/logo.png" alt="사단법인 정안경제연구원">
+          </a>
+          <p class="footer-brand-en">JungAn Economic Research Institute</p>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>070-7010-8287</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>jung-an55@naver.com</span>
+            </div>
+            <div class="footer-contact-item address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>부산광역시 연제구 중앙대로 1193<br>삼조빌딩 2층</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div>
+          <h4 class="footer-links-title">연구원소개</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">인사말</a></li>
+            <li><a href="#">연혁</a></li>
+            <li><a href="#">조직도</a></li>
+            <li><a href="#">등록현황</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-links-title">주요업무</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">학술연구</a></li>
+            <li><a href="#">계약금액조정</a></li>
+            <li><a href="#">원가계산</a></li>
+            <li><a href="#">건설클레임</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-links-title">자료실</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">참고자료</a></li>
+            <li><a href="#">관련법령</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-links-title">커뮤니티</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">고객문의</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>우편번호 (47506) 부산광역시 연제구 중앙대로 1193 삼조빌딩 2층</p>
+        <p>&copy; 2026 사단법인 정안경제연구원. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      // Header scroll effect
+      $(window).on('scroll', function() {
+        if ($(this).scrollTop() > 10) {
+          $('#header').addClass('scrolled');
+        } else {
+          $('#header').removeClass('scrolled');
+        }
+      });
+
+      // Mobile menu toggle
+      $('#mobileMenuBtn').on('click', function() {
+        $('#mobileNav').toggleClass('active');
+        $('#menuIcon').toggle();
+        $('#closeIcon').toggle();
+      });
+
+      // Close mobile menu when clicking a link
+      $('#mobileNav a').on('click', function() {
+        $('#mobileNav').removeClass('active');
+        $('#menuIcon').show();
+        $('#closeIcon').hide();
+      });
+
+      // Contact form submission
+      $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+        alert('문의가 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
+        this.reset();
+      });
+
+      // Smooth scroll for anchor links
+      $('a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        var target = $(this.getAttribute('href'));
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top - 80
+          }, 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
